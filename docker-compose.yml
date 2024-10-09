@@ -1,0 +1,17 @@
+services:
+
+  postgresql:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: agriculture
+      POSTGRES_USER: adm
+      POSTGRES_PASSWORD: 1234
+
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8003:8003
+    volumes:
+      - ./app:/app
