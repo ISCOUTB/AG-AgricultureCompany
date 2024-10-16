@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -25,4 +26,8 @@ async def about_us(request: Request):
 async def contact_us(request: Request):
     return templates.TemplateResponse("contact_us.html", {"request": request})
 
+@app.get("/login", response_class=HTMLResponse)
+async def login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
 
+app.mount("/styles", StaticFiles(directory="styles"), name="login")

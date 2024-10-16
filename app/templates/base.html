@@ -6,7 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Agriculture Company</title>
 
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Enlace al archivo CSS principal -->
+    <link rel="stylesheet" href="/styles/login.css">
+
+    <!-- Bloque para agregar CSS específico de cada página -->
+    {% block extra_head %}
+    {% endblock %}
 </head>
 <body>
     <!-- Navigation bar -->
@@ -22,13 +30,13 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">login</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/about_us">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contact Us</a>
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Log In</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +45,6 @@
 
     <!-- Main content -->
     <div class="container mt-5">
-        <!-- This is where child templates insert their content -->
         {% block page_content %}
         {% endblock %}
     </div>
@@ -58,5 +65,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bloque para agregar scripts específicos de cada página -->
+    {% block extra_scripts %}
+    {% endblock %}
 </body>
 </html>
