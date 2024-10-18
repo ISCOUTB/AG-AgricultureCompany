@@ -6,6 +6,10 @@ services:
       POSTGRES_DB: agriculture
       POSTGRES_USER: adm
       POSTGRES_PASSWORD: 1234
+    ports:
+      - 7000:7000
+    networks:
+      - ag
 
   app:
     build:
@@ -15,3 +19,10 @@ services:
       - 8004:8003
     volumes:
       - ./app:/app
+    networks:
+      - ag
+
+  networks:
+    ag:
+      external: true
+
