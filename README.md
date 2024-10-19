@@ -1,14 +1,14 @@
-[<img src="https://cdn-icons-png.flaticon.com/512/6295/6295417.png" align="right" width="25%" padding-right="350">]()
+[<img src="https://img.icons8.com/?size=512&id=55494&format=png" align="right" width="25%" padding-right="350">]()
 
 # `AG-AGRICULTURECOMPANY`
 
-#### <code> REPLACE-ME</code>
+#### <code>❯ REPLACE-ME</code>
 
 <p align="left">
-	<img src="https://img.shields.io/github/license/ISCOUTB/AG-AgricultureCompany?style=social&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
-	<img src="https://img.shields.io/github/last-commit/ISCOUTB/AG-AgricultureCompany?style=social&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-	<img src="https://img.shields.io/github/languages/top/ISCOUTB/AG-AgricultureCompany?style=social&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/ISCOUTB/AG-AgricultureCompany?style=social&color=0080ff" alt="repo-language-count">
+	<img src="https://img.shields.io/github/license/ISCOUTB/AG-AgricultureCompany?style=social&logo=opensourceinitiative&logoColor=white&color=00ff1b" alt="license">
+	<img src="https://img.shields.io/github/last-commit/ISCOUTB/AG-AgricultureCompany?style=social&logo=git&logoColor=white&color=00ff1b" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/ISCOUTB/AG-AgricultureCompany?style=social&color=00ff1b" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/ISCOUTB/AG-AgricultureCompany?style=social&color=00ff1b" alt="repo-language-count">
 </p>
 <p align="left">
 		<em>Built with the tools and technologies:</em>
@@ -23,37 +23,37 @@
 
 <br>
 
-#####  Table of Contents
+##### 🔗 Table of Contents
 
-- [ Overview](#-overview)
-- [ Features](#-features)
-- [ Repository Structure](#-repository-structure)
-- [ Modules](#-modules)
-- [ Getting Started](#-getting-started)
-    - [ Prerequisites](#-prerequisites)
-    - [ Installation](#-installation)
-    - [ Usage](#-usage)
-    - [ Tests](#-tests)
-- [ Project Roadmap](#-project-roadmap)
-- [ Contributing](#-contributing)
-- [ License](#-license)
-- [ Acknowledgments](#-acknowledgments)
+- [📍 Overview](#-overview)
+- [👾 Features](#-features)
+- [📂 Repository Structure](#-repository-structure)
+- [🧩 Modules](#-modules)
+- [🚀 Getting Started](#-getting-started)
+    - [🔖 Prerequisites](#-prerequisites)
+    - [📦 Installation](#-installation)
+    - [🤖 Usage](#-usage)
+    - [🧪 Tests](#-tests)
+- [📌 Project Roadmap](#-project-roadmap)
+- [🤝 Contributing](#-contributing)
+- [🎗 License](#-license)
+- [🙌 Acknowledgments](#-acknowledgments)
 
 ---
 
-##  Overview
+## 📍 Overview
 
 <code>❯ REPLACE-ME</code>
 
 ---
 
-##  Features
+## 👾 Features
 
 <code>❯ REPLACE-ME</code>
 
 ---
 
-##  Repository Structure
+## 📂 Repository Structure
 
 ```sh
 └── AG-AgricultureCompany/
@@ -84,7 +84,7 @@
 
 ---
 
-##  Modules
+## 🧩 Modules
 
 <details closed><summary>.</summary>
 
@@ -161,13 +161,13 @@
 
 ---
 
-##  Getting Started
+## 🚀 Getting Started
 
-###  Prerequisites
+### 🔖 Prerequisites
 
 **Python**: `version x.y.z`
 
-###  Installation
+### 📦 Installation
 
 Build the project from source:
 
@@ -186,7 +186,7 @@ Build the project from source:
 ❯ pip install -r requirements.txt
 ```
 
-###  Usage
+### 🤖 Usage
 
 To run the project, execute the following command:
 
@@ -194,7 +194,7 @@ To run the project, execute the following command:
 ❯ python main.py
 ```
 
-###  Tests
+### 🧪 Tests
 
 Execute the test suite using the following command:
 
@@ -204,7 +204,7 @@ Execute the test suite using the following command:
 
 ---
 
-##  Project Roadmap
+## 📌 Project Roadmap
 
 - [X] **`Task 1`**: <strike>Implement feature one.</strike>
 - [ ] **`Task 2`**: Implement feature two.
@@ -212,7 +212,7 @@ Execute the test suite using the following command:
 
 ---
 
-##  Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Here are several ways you can contribute:
 
@@ -257,14 +257,15 @@ Contributions are welcome! Here are several ways you can contribute:
 
 ---
 
-##  License
+## 🎗 License
 
 This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
 ---
 
-##  Acknowledgments
+## 🙌 Acknowledgments
 
 - List any resources, contributors, inspiration, etc. here.
 
+---
 ---
