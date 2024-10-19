@@ -1,0 +1,11 @@
+.custom-navbar {
+    background-color: #4CAF50; /* Cambia este valor al color que desees */
+}
+
+.custom-navbar .nav-link {
+    color: white !important; /* Color del texto de los enlaces */
+}
+
+.custom-navbar .nav-link:hover {
+    color: #f1c40f !important; /* Color del texto cuando haces hover */
+}
