@@ -40,7 +40,7 @@
 
 ## 📍 DescripciónGeneral
 
-<code>❯ REPLACE-ME</code>
+AGRICULTURE COMPANY es un sistema diseñado para gestionar diferentes aspectos de la agricultura, tales como cultivos, inventarios, distribución y ventas. Provee herramientas para el registro, actualización y seguimiento de información clave relacionada con la producción agrícola, facilitando la toma de decisiones y optimizando los procesos productivos.
 
 ---
 
