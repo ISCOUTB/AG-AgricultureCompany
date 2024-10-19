@@ -162,7 +162,7 @@
 
 ### 🔖 Prerequisitos
 
-**Python**: `version x.y.z`
+**Python**: `any version above 3.0`
 
 ### 📦 Instalación
 
