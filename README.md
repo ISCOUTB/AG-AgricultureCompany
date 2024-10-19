@@ -11,7 +11,7 @@
 	<img src="https://img.shields.io/github/languages/count/ISCOUTB/AG-AgricultureCompany?style=social&color=00ff1b" alt="repo-language-count">
 </p>
 <p align="left">
-		<em>BuiConstrido con las siguientes tecnologías:</em>
+		<em>Construido con las siguientes tecnologías:</em>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=social&logo=HTML5&logoColor=white" alt="HTML5">
@@ -23,22 +23,22 @@
 
 <br>
 
-##### 🔗 Table of Contents
+##### 🔗 Tabla de contenidos
 
-- [📍 Descripción General](#-overview)
-- [👾 Características](#-features)
-- [📂 Estructura del Repositorio](#-repository-structure)
-- [🧩 Módulos](#-modules)
-- [🚀 Primeros Pasos](#-getting-started)
-    - [🔖 Prerequisitos](#-prerequisites)
-    - [📦 Instalación](#-installation)
-    - [🤖 Uso](#-usage)
-    - [🧪 Pruebas](#-tests)
-- [🎗 Licencia](#-license)
+- [📍 Descripción General](#-DescripciónGeneral)
+- [👾 Características](#-Características)
+- [📂 Estructura del Repositorio](#-EstructuradelRepositorio)
+- [🧩 Módulos](#-Módulos)
+- [🚀 Primeros Pasos](#-PrimerosPasos)
+    - [🔖 Prerequisitos](#-Prerequisitos)
+    - [📦 Instalación](#-Instalación)
+    - [🤖 Uso](#-Uso)
+    - [🧪 Pruebas](#-Pruebas)
+- [🎗 Licencia](#-Licencia)
 
 ---
 
-## 📍 Descripción General
+## 📍 DescripciónGeneral
 
 <code>❯ REPLACE-ME</code>
 
@@ -50,7 +50,7 @@
 
 ---
 
-## 📂 Estructura del Repositorio
+## 📂 EstructuradelRepositorio
 
 ```sh
 └── AG-AgricultureCompany/
@@ -158,7 +158,7 @@
 
 ---
 
-## 🚀 Primeros Pasos
+## 🚀 PrimerosPasos
 
 ### 🔖 Prerequisitos
 
@@ -202,7 +202,7 @@ Execute the test suite using the following command:
 ---
 
 
-## 🎗 License
+## 🎗 Licencia
 
 This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
