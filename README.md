@@ -11,11 +11,11 @@
 	<img src="https://img.shields.io/github/languages/count/ISCOUTB/AG-AgricultureCompany?style=social&color=00ff1b" alt="repo-language-count">
 </p>
 <p align="left">
-		<em>Built with the tools and technologies:</em>
+		<em>BuiConstrido con las siguientes tecnologías:</em>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=social&logo=HTML5&logoColor=white" alt="HTML5">
-	<img src="https://img.shields.io/badge/YAML-CB171E.svg?style=social&logo=YAML&logoColor=white" alt="YAML">
+	<img src="https://img.shields.io/badge/YAML-CB171E.svg?style=social&logo=YAML&logoColor=white" alt="FastAPI">
 	<img src="https://img.shields.io/badge/Python-3776AB.svg?style=social&logo=Python&logoColor=white" alt="Python">
 	<img src="https://img.shields.io/badge/Docker-2496ED.svg?style=social&logo=Docker&logoColor=white" alt="Docker">
 	<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=social&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions">
@@ -25,35 +25,32 @@
 
 ##### 🔗 Table of Contents
 
-- [📍 Overview](#-overview)
-- [👾 Features](#-features)
-- [📂 Repository Structure](#-repository-structure)
-- [🧩 Modules](#-modules)
-- [🚀 Getting Started](#-getting-started)
-    - [🔖 Prerequisites](#-prerequisites)
-    - [📦 Installation](#-installation)
-    - [🤖 Usage](#-usage)
-    - [🧪 Tests](#-tests)
-- [📌 Project Roadmap](#-project-roadmap)
-- [🤝 Contributing](#-contributing)
-- [🎗 License](#-license)
-- [🙌 Acknowledgments](#-acknowledgments)
+- [📍 Descripción General](#-overview)
+- [👾 Características](#-features)
+- [📂 Estructura del Repositorio](#-repository-structure)
+- [🧩 Módulos](#-modules)
+- [🚀 Primeros Pasos](#-getting-started)
+    - [🔖 Prerequisitos](#-prerequisites)
+    - [📦 Instalación](#-installation)
+    - [🤖 Uso](#-usage)
+    - [🧪 Pruebas](#-tests)
+- [🎗 Licencia](#-license)
 
 ---
 
-## 📍 Overview
+## 📍 Descripción General
 
 <code>❯ REPLACE-ME</code>
 
 ---
 
-## 👾 Features
+## 👾 Características
 
 <code>❯ REPLACE-ME</code>
 
 ---
 
-## 📂 Repository Structure
+## 📂 Estructura del Repositorio
 
 ```sh
 └── AG-AgricultureCompany/
@@ -84,7 +81,7 @@
 
 ---
 
-## 🧩 Modules
+## 🧩 Módulos
 
 <details closed><summary>.</summary>
 
@@ -161,13 +158,13 @@
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Primeros Pasos
 
-### 🔖 Prerequisites
+### 🔖 Prerequisitos
 
 **Python**: `version x.y.z`
 
-### 📦 Installation
+### 📦 Instalación
 
 Build the project from source:
 
@@ -186,7 +183,7 @@ Build the project from source:
 ❯ pip install -r requirements.txt
 ```
 
-### 🤖 Usage
+### 🤖 Uso
 
 To run the project, execute the following command:
 
@@ -194,7 +191,7 @@ To run the project, execute the following command:
 ❯ python main.py
 ```
 
-### 🧪 Tests
+### 🧪 Pruebas
 
 Execute the test suite using the following command:
 
@@ -204,58 +201,6 @@ Execute the test suite using the following command:
 
 ---
 
-## 📌 Project Roadmap
-
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Here are several ways you can contribute:
-
-- **[Report Issues](https://github.com/ISCOUTB/AG-AgricultureCompany/issues)**: Submit bugs found or log feature requests for the `AG-AgricultureCompany` project.
-- **[Submit Pull Requests](https://github.com/ISCOUTB/AG-AgricultureCompany/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/ISCOUTB/AG-AgricultureCompany/discussions)**: Share your insights, provide feedback, or ask questions.
-
-<details closed>
-<summary>Contributing Guidelines</summary>
-
-1. **Fork the Repository**: Start by forking the project repository to your github account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
-   ```sh
-   git clone https://github.com/ISCOUTB/AG-AgricultureCompany
-   ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
-   ```sh
-   git checkout -b new-feature-x
-   ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
-   ```sh
-   git commit -m 'Implemented new feature x.'
-   ```
-6. **Push to github**: Push the changes to your forked repository.
-   ```sh
-   git push origin new-feature-x
-   ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
-</details>
-
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://github.com{/ISCOUTB/AG-AgricultureCompany/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=ISCOUTB/AG-AgricultureCompany">
-   </a>
-</p>
-</details>
-
----
 
 ## 🎗 License
 
@@ -263,9 +208,4 @@ This project is protected under the [SELECT-A-LICENSE](https://choosealicense.co
 
 ---
 
-## 🙌 Acknowledgments
 
-- List any resources, contributors, inspiration, etc. here.
-
----
----
