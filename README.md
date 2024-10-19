@@ -46,7 +46,34 @@ AGRICULTURE COMPANY es un sistema diseñado para gestionar diferentes aspectos d
 
 ## 👾 Características
 
-<code>❯ REPLACE-ME</code>
+- Gestión de cultivos:
+Permite registrar, monitorear y actualizar información de los cultivos en tiempo real.
+
+- Inventarios optimizados:
+Lleva control del stock de productos, insumos y herramientas, evitando faltantes o excesos.
+
+- Distribución eficiente:
+Planificación y seguimiento del proceso de distribución de productos, garantizando entregas a tiempo.
+
+- Gestión de ventas:
+Facilita el registro y análisis de las ventas realizadas, brindando reportes en tiempo real.
+
+- Alertas automatizadas:
+Notificaciones sobre tareas pendientes o eventos importantes, como fechas de cosecha o niveles bajos de inventario.
+
+- Visualización de datos:
+Paneles de control interactivos con gráficos y reportes que ayudan a la toma de decisiones.
+
+- Soporte multiusuario:
+Permite la colaboración entre múltiples usuarios con distintos roles (administrador, agricultor, distribuidor, etc.).
+
+- Escalabilidad y modularidad:
+Arquitectura preparada para crecer con la empresa, integrando nuevos módulos según sea necesario.
+
+- Integración con herramientas externas:
+Compatible con sistemas de contabilidad, plataformas de ventas en línea y otros servicios complementarios.
+
+
 
 ---
 
