@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get install -yq tzdata && \
     ln -fs /usr/share/zoneinfo/America/Bogota /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata
-&& mkdir /app
+RUN mkdir /app
 WORKDIR /app
 
 COPY requirements.txt ./
