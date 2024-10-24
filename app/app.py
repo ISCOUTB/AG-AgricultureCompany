@@ -31,3 +31,4 @@ async def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
 app.mount("/styles", StaticFiles(directory="styles"), name="login")
+

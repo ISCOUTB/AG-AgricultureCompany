@@ -1,11 +1,11 @@
-.custom-navbar {
-    background-color: #4CAF50; /* Cambia este valor al color que desees */
-}
+.gradient-custom-3 {
+/* fallback for old browsers */
+background: #fccb90;
 
-.custom-navbar .nav-link {
-    color: white !important; /* Color del texto de los enlaces */
-}
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
 
-.custom-navbar .nav-link:hover {
-    color: #f1c40f !important; /* Color del texto cuando haces hover */
+/* W3C, IE 10+/ ge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
+
 }

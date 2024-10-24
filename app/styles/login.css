@@ -1,12 +1,16 @@
+.custom-navbar {
+    background: #1480cc !important;
+}
+
 .gradient-custom-2 {
 /* fallback for old browsers */
 background: #fccb90;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
+background: -webkit-linear-gradient(to right, #f30ba7, #3b7a57, #4b8f63, #6b8e23);
 
 /* W3C, IE 10+/ ge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
+background: linear-gradient(to right, #d530ff, #3b7a57, #4b8f63, #6b8e23);
 
 
 
@@ -26,3 +30,8 @@ border-top-right-radius: .3rem;
 border-bottom-right-radius: .3rem;
 }
 }
+
+.custom-navbar{
+    background-color: #f1c40f;
+}
+
