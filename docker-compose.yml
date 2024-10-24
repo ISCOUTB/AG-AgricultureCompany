@@ -22,7 +22,7 @@ services:
     networks:
       - ag
 
-  networks:
+networks:
     ag:
       external: true
 
