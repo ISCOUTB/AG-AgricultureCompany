@@ -4,7 +4,7 @@
 
 .gradient-custom-2 {
 /* fallback for old browsers */
-background: #fccb90;
+background: green;
 
 /* Chrome 10-25, Safari 5.1-6 */
 background: -webkit-linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
@@ -14,16 +14,16 @@ background: linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23) !impor
 
 
 
-    margin-top: 10px;
+    margin-top: 0 !important;
     color: white;
     border-color: #9ae594;
 }
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
 .gradient-form {
 height: 100vh !important;
 }
-}
+}*/
 @media (min-width: 769px) {
 .gradient-custom-2 {
 border-top-right-radius: .3rem;
@@ -42,6 +42,14 @@ background: -webkit-linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23
 background: linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
 
 }
+
+@media (min-width: 768px) {
+.gradient-form-2 {
+height: 100vh !important;
+}
+}
+
+
 
 
 

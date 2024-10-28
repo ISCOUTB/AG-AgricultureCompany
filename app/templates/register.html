@@ -2,7 +2,7 @@
 
 {% block page_content %}
 
-<section class="h-100 gradient-form">
+<section class="h-50">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
@@ -18,49 +18,63 @@
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label class="required-field">First Name</label>
-                                <input type="text" class="form-control" placeholder="Wendy">
+                                <input type="text" required class="form-control" placeholder="Wendy">
                             </div>
                         </div>
 
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control"  placeholder="Appleseed">
+                                <input type="text" required class="form-control"  placeholder="Appleseed">
                             </div>
                         </div>
 
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label class="required-field" for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="wendy.apple@seed.com">
+                                <input type="text" required class="form-control" id="email" name="email" placeholder="wendy.apple@seed.com">
                             </div>
                         </div>
 
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="tel" class="form-control" placeholder="(021)-454-545">
+                                <input type="tel" required class="form-control" placeholder="(021)-454-545">
                             </div>
                         </div>
+
+                        <div class="col-sm-10 mb-6">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-10 mb-6">
+                                <div class="form-group">
+                                    <label>Confirm password</label>
+                                    <input type="password" required class="form-control">
+                                </div>
+                            </div>
                 <div>
-                    <button type="submit" value="Login" class="btn gradient-custom-2">Sing up</button>
+                    <button type="submit" value="Login" class="btn gradient-custom-2">Sign up</button>
                 </div>
                      </div>
 </form>
               </div>
             </div>
+
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">Get in touch</h4>
-                <ul>
-                    <li class="mb-4 pl-4">
-                        <span class="position-absolute"><i class="fas fa-envelope"></i></span> support@agriculture.com
+                <ul class="contact-info" style="list-style: none; padding-left: 0;" >
+                    <li class="mb-4">
+                        <span><i class="fas fa-envelope"></i></span> support@agriculture.com
                     </li>
-                    <li class="mb-4 pl-4">
-                        <span class="position-absolute"><i class="fas fa-phone"></i></span> +57 3000000000
+                    <li class="mb-4">
+                        <span><i class="fas fa-phone"></i></span> +57 3000000000
                     </li>
-                    <li class="mb-4 pl-4">
-                        <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span> Agriculture Company.
+                    <li class="mb-4">
+                        <span><i class="fas fa-map-marker-alt"></i></span> Agriculture Company.
                         <br> Cartagena, Colombia
                         <br> Utb
 
