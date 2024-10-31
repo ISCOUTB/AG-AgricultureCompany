@@ -34,5 +34,9 @@ async def login(request: Request):
 async def register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
+@app.get("/cultivation", response_class=HTMLResponse)
+async def cultivation(request: Request):
+    return templates.TemplateResponse("cultivation.html", {"request": request})
+
 app.mount("/styles", StaticFiles(directory="styles"), name="login")
 

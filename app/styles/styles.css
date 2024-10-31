@@ -33,7 +33,7 @@ border-bottom-right-radius: .3rem;
 
 .gradient-custom-3 {
 /* fallback for old browsers */
-background: #fccb90;
+background: green;
 
 /* Chrome 10-25, Safari 5.1-6 */
 background: -webkit-linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
@@ -78,5 +78,11 @@ height: 100vh !important;
   font-style: normal;
 }
 
+body {
+    background-image: url('https://www.shutterstock.com/image-photo/lush-rice-paddy-field-neat-600nw-2499404003.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 
