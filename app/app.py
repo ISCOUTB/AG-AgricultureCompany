@@ -38,5 +38,25 @@ async def register(request: Request):
 async def cultivation(request: Request):
     return templates.TemplateResponse("cultivation.html", {"request": request})
 
+@app.get("/crop", response_class=HTMLResponse)
+async def crop(request: Request):
+    return templates.TemplateResponse("crop.html", {"request": request})
+
+@app.get("/harvested", response_class=HTMLResponse)
+async def harvested(request: Request):
+    return templates.TemplateResponse("harvested.html", {"request": request})
+
+@app.get("/silocreation", response_class=HTMLResponse)
+async def silocreation(request: Request):
+    return templates.TemplateResponse("silocreation.html", {"request": request})
+
+@app.get("/productcreation", response_class=HTMLResponse)
+async def productcreation(request: Request):
+    return templates.TemplateResponse("productcreation.html", {"request": request})
+
+@app.get("/silo", response_class=HTMLResponse)
+async def silo(request: Request):
+    return templates.TemplateResponse("silo.html", {"request": request})
+
 app.mount("/styles", StaticFiles(directory="styles"), name="login")
 

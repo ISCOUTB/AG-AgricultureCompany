@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<h2>Products created</h2>
+<a href="/silocreation" class="btn btn-success">Back</a>
+<section class="content-wrapper-table">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Type/Name</th>
+        <th scope="col">Weight (Kg)</th>
+        <th scope="col">Sell price</th>
+        <th scope="col">Amount (boxes)</th>
+        <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for line in value %}
+    <tr>
+        <th scope="row">{{line.id_product}}</th>
+        <td>{{line.type}}</td>
+        <td>{{line.weight}}</td>
+        <td>{{line.sellprice}}</td>
+        <td>{{line.amount}}</td>
+        <td>
+            <a href="/product_delete/{{line.id_product}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+        </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</section>
+{% endblock %}

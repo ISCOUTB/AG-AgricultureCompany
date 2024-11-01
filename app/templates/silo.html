@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<section class="content-wrapper-table">
+<div class="page-header">
+    <h1>Silo Information Form</h1>
+    <p>Enter the silo information:</p>
+    <br>
+    <form action="/silo_detail" method="post">
+        <input type="hidden" id="op" name="op" value="I">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_siloCapacity">Capacity of the silo (boxes)</span>
+            <input type="number" min="0" required class="form-control" name="capacity" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_siloCapacity">
+        </div>
+
+        <br>
+        <input class="btn btn-primary" type="submit" name="form" value="Submit"/>
+    </form>
+</div>
+</section>
+{% endblock %}

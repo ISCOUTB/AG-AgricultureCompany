@@ -1,0 +1,88 @@
+.custom-navbar {
+    background: green !important;
+}
+
+.gradient-custom-2 {
+/* fallback for old browsers */
+background: green;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, #3b8357, #49a466, #75bb48, #9ec94a);
+
+/* W3C, IE 10+/ ge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, #3b8357, #49a466, #75bb48, #9ec94a ) !important;
+
+
+
+    margin-top: 0 !important;
+    color: white;
+    border-color: #9ae594;
+}
+
+/*@media (min-width: 768px) {
+.gradient-form {
+height: 100vh !important;
+}
+}*/
+@media (min-width: 769px) {
+.gradient-custom-2 {
+border-top-right-radius: .3rem;
+border-bottom-right-radius: .3rem;
+}
+}
+
+.gradient-custom-3 {
+/* fallback for old browsers */
+background: green;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
+
+/* W3C, IE 10+/ ge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, #2f4f4f, #3b7a57, #4b8f63, #6b8e23);
+
+    border-color: green;
+
+}
+
+@media (min-width: 768px) {
+.gradient-form-2 {
+height: 100vh !important;
+}
+}
+
+.login-input {
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    max-width: 400px; /* Puedes cambiar este valor para aumentar o reducir el ancho máximo */
+}
+
+
+.logo-home {
+    width: 200px; /* Ajusta el ancho */
+    height: auto; /* Mantiene la proporción */
+    display: block; /* Centra la imagen cuando está en un contenedor */
+    margin: -50px auto; /* Centra horizontalmente */
+    clip-path: circle(25%);
+    object-fit: cover;
+}
+
+.tangerine-regular {
+  font-family: "Tangerine", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tangerine-bold {
+  font-family: "Tangerine", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+    background-image: url('https://images.unsplash.com/photo-1711397651462-3b2a22f5cfc8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtcG8lMjBkZSUyMGFncmljdWx0dXJhfGVufDB8fDB8fHww');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+

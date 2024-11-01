@@ -79,10 +79,18 @@ height: 100vh !important;
 }
 
 body {
-    background-image: url('https://www.shutterstock.com/image-photo/lush-rice-paddy-field-neat-600nw-2499404003.jpg');
+    background-image: url('https://images.unsplash.com/photo-1711397651462-3b2a22f5cfc8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtcG8lMjBkZSUyMGFncmljdWx0dXJhfGVufDB8fDB8fHww');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-
+.content-wrapper-table {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<section class="content-wrapper-table">
+<h2>Silo creation</h2>
+<div class="d-flex justify-content-between align-items-center">
+    <a href="/silo" class="btn btn-success">Add New Silo</a>
+    <a href="/productcreation" class="btn btn-primary">See Products Created</a>
+</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Capacity (boxes)</th>
+        <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for line in value %}
+    <tr>
+        <th scope="row">{{line[0]}}</th>
+        <td>{{line[1]}}</td>
+        <td>
+            <a href="/silo_update/{{line[0]}}" class="btn btn-warning btn-xs">Edit</a>
+            <a href="/silo_delete/{{line[0]}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+            <a href="/show_products/{{line[0]}}" class="btn btn-success btn-xs">Show products</a>
+        </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</section>
+{% endblock %}
