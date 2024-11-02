@@ -98,17 +98,53 @@ body {
     flex-direction: column;
 }
 
+
+
+
 .content-wrapper-table {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.cont-for-im {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px; /* Espacio entre cada ítem */
-  text-align: center; /* Centra el texto debajo de cada imagen */
+.profile-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: auto;
+    border: 3px solid #75bb48;
+    display: block;
+}
+
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px 0;
+}
+/*.team:hover {
+    transform: scale(1.05);
+}*/
+
+.member {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    transition: transform 0.3s;
+}
+
+.explore{
+    background-color: white;
+    border-radius: 20px;
+}
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
