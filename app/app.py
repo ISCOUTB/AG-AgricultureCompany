@@ -58,8 +58,9 @@ async def productcreation(request: Request):
 async def silo(request: Request):
     return templates.TemplateResponse("silo.html", {"request": request})
 
-app.mount("/styles", StaticFiles(directory="styles"), name="styles2")
+
 app.mount("/images", StaticFiles(directory="images"), name="Miguel")
+app.mount("/styles", StaticFiles(directory="styles"), name="styles")
 app.mount("/images", StaticFiles(directory="images"), name="Camila")
 app.mount("/images", StaticFiles(directory="images"), name="Nestor")
 

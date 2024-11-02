@@ -1,7 +1,3 @@
-.custom-navbar {
-    background: green !important;
-}
-
 .gradient-custom-2 {
 /* fallback for old browsers */
 background: green;
@@ -66,23 +62,86 @@ height: 100vh !important;
     object-fit: cover;
 }
 
-.tangerine-regular {
-  font-family: "Tangerine", cursive;
+
+
+
+.dancing-script-Tittle {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
 
-.tangerine-bold {
-  font-family: "Tangerine", cursive;
-  font-weight: 700;
-  font-style: normal;
-}
 
 body {
     background-image: url('https://images.unsplash.com/photo-1711397651462-3b2a22f5cfc8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtcG8lMjBkZSUyMGFncmljdWx0dXJhfGVufDB8fDB8fHww');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
+
+
+
+.content-wrapper-table {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.profile-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: auto;
+    border: 3px solid #75bb48;
+    display: block;
+}
+
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+/*.team:hover {
+    transform: scale(1.05);
+}*/
+
+.member {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    transition: transform 0.3s;
+}
+
+.explore{
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.service-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.service-item-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
 
