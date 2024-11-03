@@ -3,26 +3,28 @@ services:
   postgresql:
     image: postgres:latest
     environment:
-      POSTGRES_DB: agriculture
-      POSTGRES_USER: adm
-      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: "agriculture"
+      POSTGRES_USER: "adm"
+      POSTGRES_PASSWORD: "12345"
     ports:
-      - 7000:7000
-    networks:
-      - ag
+      - 7000:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
 
   app:
     build:
       context: ./app
       dockerfile: Dockerfile
+    depends_on:
+      - postgresql
+    environment:
+      - DATABASE_URL=postgresql://adm:12345@postgresql/agriculture
     ports:
       - 8004:8003
     volumes:
       - ./app:/app
-    networks:
-      - ag
+volumes:
+  postgres_data:
 
-networks:
-    ag:
-      external: true
+
 

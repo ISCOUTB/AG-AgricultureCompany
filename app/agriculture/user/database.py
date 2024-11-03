@@ -1,10 +1,7 @@
-from os import close
-
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from . import config
-from .config import DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_HOST, DATABASE_NAME
 
 DATABASE_USERNAME = config.DATABASE_USERNAME
 DATABASE_PASSWORD = config.DATABASE_PASSWORD
