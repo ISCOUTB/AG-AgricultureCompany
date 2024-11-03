@@ -7,7 +7,10 @@ from sqlalchemy.exc import IntegrityError
 from agriculture.user.database import SessionLocal, get_db
 from agriculture.user.models import User
 from pydantic import BaseModel, EmailStr
+from agriculture.user.database import engine, Base
 
+# Crear todas las tablas en la base de datos si no existen
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
