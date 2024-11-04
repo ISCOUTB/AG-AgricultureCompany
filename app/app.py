@@ -102,6 +102,10 @@ async def login_user(
     password: str = Form(...),
     db: Session = Depends(get_db)
 ):
+    db_user = db.query(User).filter(User.email == email).first()
+
+    if not db_user or db_user.hashed_password != password:
+        return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid email or password."})
 
     # Redirecciona a la página de inicio en caso de éxito
     return templates.TemplateResponse("index.html", {"request": request, "message": "Succesful login"})
