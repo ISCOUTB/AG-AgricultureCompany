@@ -53,7 +53,7 @@ async def contact_us(request: Request):
 async def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-# Endpoint para mostrar la página de registro
+# Endpoint para mostrar la pï¿½gina de registro
 @app.get("/register", response_class=HTMLResponse)
 async def register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
@@ -67,10 +67,10 @@ async def register_user(
         email: str = Form(...),
         phone: str = Form(...),
         hashed_password: str = Form(...),
-        confirm_password: str = Form(...),  # Campo de confirmación de contraseña
+        confirm_password: str = Form(...),  # Campo de confirmaciï¿½n de contraseï¿½a
         db: Session = Depends(get_db)
 ):
-    # Validación de coincidencia de contraseñas
+    # Validaciï¿½n de coincidencia de contraseï¿½as
     if hashed_password != confirm_password:
         return templates.TemplateResponse("register.html", {"request": request,
                                                             "error": "Passwords do not match."})
@@ -94,7 +94,7 @@ async def register_user(
         db.rollback()
         return templates.TemplateResponse("register.html", {"request": request,
                                                             "error": "The email is already registered. Please use another one."})
-# Ruta para iniciar sesión
+# Ruta para iniciar sesiï¿½n
 @app.post("/login", response_class=HTMLResponse)
 async def login_user(
     request: Request,
@@ -107,7 +107,7 @@ async def login_user(
     if not db_user or db_user.hashed_password != password:
         return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid email or password."})
 
-    # Redirecciona a la página de inicio en caso de éxito
+    # Redirecciona a la pï¿½gina de inicio en caso de ï¿½xito
     return templates.TemplateResponse("index.html", {"request": request, "message": "Succesful login"})
 
 @app.get("/cultivation", response_class=HTMLResponse)
