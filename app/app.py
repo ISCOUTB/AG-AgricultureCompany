@@ -57,7 +57,8 @@ async def about_us(request: Request):
 # Contact Us page
 @app.get("/contact", response_class=HTMLResponse)
 async def contact_us(request: Request):
-    return templates.TemplateResponse("contact_us.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("contact_us.html", {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/login", response_class=HTMLResponse)
 async def login(request: Request):
@@ -132,27 +133,33 @@ async def logout(request: Request):
 
 @app.get("/cultivation", response_class=HTMLResponse)
 async def cultivation(request: Request):
-    return templates.TemplateResponse("cultivation.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("cultivation.html", {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/crop", response_class=HTMLResponse)
 async def crop(request: Request):
-    return templates.TemplateResponse("crop.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("crop.html", {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/harvested", response_class=HTMLResponse)
 async def harvested(request: Request):
-    return templates.TemplateResponse("harvested.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("harvested.html", {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/silocreation", response_class=HTMLResponse)
 async def silocreation(request: Request):
-    return templates.TemplateResponse("silocreation.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("silocreation.html", {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/productcreation", response_class=HTMLResponse)
 async def productcreation(request: Request):
-    return templates.TemplateResponse("productcreation.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("productcreation.html", {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/silo", response_class=HTMLResponse)
 async def silo(request: Request):
-    return templates.TemplateResponse("silo.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("silo.html", {"request": request, "user_logged_in": user_logged_in})
 
 app.mount("/styles", StaticFiles(directory="styles"), name="styles2")
 

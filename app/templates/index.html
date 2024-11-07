@@ -10,6 +10,7 @@
             <p>Your Trusted Partner in Agriculture</p>
         </div>
     </div>
+    {% if user_logged_in %}
     <div class="container">
         <div class="row mt-5 explore">
             <div class="col-lg-12 text-center">
@@ -26,9 +27,9 @@
                <p>View and track agricultural inventory for effective resource management.</p>
                <a href="/silocreation" class="btn btn-primary gradient-custom-3" style="margin-bottom: 10px">Inventory</a>
             </div>
-
         </div>
     </div>
+    {% endif %}
 
 
     <div class="row mt-5">
