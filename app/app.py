@@ -1,13 +1,12 @@
 from fastapi import FastAPI, Request, Form, Depends, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from agriculture.user.database import SessionLocal, get_db
+from agriculture.user.database import SessionLocal, get_db, engine, Base
 from agriculture.user.models import User
 from pydantic import BaseModel, EmailStr
-from agriculture.user.database import engine, Base
 
 # Crear todas las tablas en la base de datos si no existen
 Base.metadata.create_all(bind=engine)
@@ -16,6 +15,11 @@ app = FastAPI()
 
 # Path to the templates folder
 templates = Jinja2Templates(directory="templates")
+
+
+# Función para verificar si el usuario está autenticado
+def is_logged_in(request: Request):
+    return request.cookies.get("session_token") == "user_logged_in"
 
 
 # Esquemas de Pydantic para validar los datos de entrada
@@ -35,13 +39,19 @@ class UserLogin(BaseModel):
 # Home page - Index
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    # Aquí se debe definir si el usuario ha iniciado sesión
+    if(is_logged_in(request)):
+        user_logged_in = True  # Cambiar a `True` si hay sesión
+    else:
+        user_logged_in = False
+    return templates.TemplateResponse("index.html", {"request": request, "user_logged_in": user_logged_in})
 
 
-# About Us page
+# Otros endpoints que necesiten mostrar el estado del usuario
 @app.get("/about_us", response_class=HTMLResponse)
 async def about_us(request: Request):
-    return templates.TemplateResponse("about_us.html", {"request": request})
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("about_us.html", {"request": request, "user_logged_in": user_logged_in})
 
 
 # Contact Us page
@@ -107,8 +117,18 @@ async def login_user(
     if not db_user or db_user.hashed_password != password:
         return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid email or password."})
 
-    # Redirecciona a la p�gina de inicio en caso de �xito
-    return templates.TemplateResponse("index.html", {"request": request, "message": "Succesful login"})
+    # Si las credenciales son correctas, crea una cookie de sesión
+    response = RedirectResponse(url="/", status_code=302)
+    response.set_cookie(key="session_token", value="user_logged_in", httponly=True)
+    return response
+
+#Endpoint para cerrar sesion
+@app.get("/logout", response_class=HTMLResponse)
+async def logout(request: Request):
+    response = RedirectResponse(url="/")
+    response.delete_cookie("session_token")  # Elimina la cookie para cerrar sesión
+    return response
+
 
 @app.get("/cultivation", response_class=HTMLResponse)
 async def cultivation(request: Request):
