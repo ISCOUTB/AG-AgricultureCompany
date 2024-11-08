@@ -161,6 +161,12 @@ async def silo(request: Request):
     user_logged_in = is_logged_in(request)
     return templates.TemplateResponse("silo.html", {"request": request, "user_logged_in": user_logged_in})
 
+@app.get("/profile", response_class=HTMLResponse)
+async def profile(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("profile.html", {"request": request, "user_logged_in": user_logged_in})
+
+
 app.mount("/styles", StaticFiles(directory="styles"), name="styles2")
 
 app.mount("/images", StaticFiles(directory="images"), name="Miguel")
