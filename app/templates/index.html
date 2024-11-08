@@ -12,44 +12,82 @@
     </div>
     {% if user_logged_in %}
     <div class="container">
-        <div class="row mt-5 explore">
-            <div class="col-lg-12 text-center">
-                <h2 class="dancing-script-Tittle" style="font-size: 40px">Explore Our Services</h2>
-                <p>Take a step towards improving your agricultural practices with our cultivation and inventory management solutions.</p>
-            </div>
-            <div class="col-lg-6 text-center">
-                <img src="https://img.freepik.com/premium-photo/cultivation-land-garden-with-hand-tools-soil-loosening-gardening-concept-agriculture-plants-growing-bed-row_500858-1259.jpg" style="height: 200px; width: auto; margin:auto;">
-                <p>Record and manage crop data for optimized growth and informed decision-making.</p>
-                <a href="/crop" class="btn btn-primary gradient-custom-3">Cultivation</a>
-            </div>
-            <div class="col-lg-6 text-center">
-               <img src="https://media.istockphoto.com/id/1347030269/es/v%C3%ADdeo/agricultor-lleva-una-caja-de-verduras-frescas-camina-por-el-campo.jpg?s=640x640&k=20&c=HN9AJ0gUl0ZgsE2VXlal8yXhHKxlcjVGqW9GlX2_85M=" style="height: 200px; width: auto;; margin:auto;">
-               <p>View and track agricultural inventory for effective resource management.</p>
-               <a href="/silocreation" class="btn btn-primary gradient-custom-3" style="margin-bottom: 10px">Inventory</a>
+            <div class="row mt-5 explore">
+                <div class="col-lg-12 text-center">
+                    <h2 class="dancing-script-Tittle" style="font-size: 40px">Explore Our Services</h2>
+                    <p>Take a step towards improving your agricultural practices with our cultivation and inventory management solutions.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://img.freepik.com/premium-photo/cultivation-land-garden-with-hand-tools-soil-loosening-gardening-concept-agriculture-plants-growing-bed-row_500858-1259.jpg" style="height: 200px; width: auto; margin:auto;">
+                    <p>Record and manage crop data for optimized growth and informed decision-making.</p>
+                    <a href="/crop" class="button gradient-custom-3" style="margin: auto">Cultivation</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                   <img src="https://media.istockphoto.com/id/1347030269/es/v%C3%ADdeo/agricultor-lleva-una-caja-de-verduras-frescas-camina-por-el-campo.jpg?s=640x640&k=20&c=HN9AJ0gUl0ZgsE2VXlal8yXhHKxlcjVGqW9GlX2_85M=" style="height: 200px; width: auto; margin:auto;">
+                   <p>View and track agricultural inventory for effective resource management.</p>
+                   <a href="/silocreation" class="button gradient-custom-3" style="margin: auto">Inventory</a>
+                </div>
             </div>
         </div>
-    </div>
+
+
     {% endif %}
 
 
     <div class="row mt-5">
-        <div class="col-lg-5 explore">
-            <h2 class="dancing-script-Tittle" style="font-size: 40px">About Us</h2>
-            <p>Discover our passion for agriculture and learn about our mission to revolutionize farming management.</p>
-            <a href="/about_us" class="btn btn-primary gradient-custom-3">About Us</a>
+            <div class="col-lg-5 explore">
+                <h2>About Us</h2>
+                <p>Discover our passion for agriculture and learn about our mission to revolutionize farming management.</p>
+                <a style="font-size: 20px; padding: 10px 14px; width: auto;" href="/about_us" class="button gradient-custom-3">About Us</a>
+            </div>
+            <div class="col-lg-5 explore" style="margin-left: auto;">
+                <h2>Contact Us</h2>
+                <p>Have questions or need assistance? Feel free to get in touch with our team.</p>
+                <a style="font-size: 20px; padding: 10px 14px; width: auto;" href="/contact" class="button gradient-custom-3">Contact Us!</a>
+            </div>
         </div>
-        <div class="col-lg-5 explore" style="margin-left: auto;">
-            <h2 class="dancing-script-Tittle" style="font-size: 40px">Contact Us</h2>
-            <p>Have questions or need assistance? Feel free to get in touch with our team.</p>
-            <a href="/contact" class="btn btn-primary gradient-custom-3">Contact Us!</a>
-        </div>
-    </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const logo = document.querySelector('.logo-home');
         const header = document.querySelector('h1');
+        const logoObserver = new IntersectionObserver(
+                ([e]) => {
+                    if (e.intersectionRatio < 1) {
+                        logo.classList.add('small');
+                    } else {
+                        logo.classList.remove('small');
+                    }
+                },
+                { threshold: [1] }
+            );
+
+            if (header) {
+                logoObserver.observe(header);
+            }
+
+            // Animación de los paneles inferiores
+            const panels = document.querySelectorAll('.explore');
+
+            const panelObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            panelObserver.unobserve(entry.target); // Una vez animado, dejamos de observar
+                        }
+                    });
+                },
+                {
+                    threshold: 0.1, // Comenzar la animación cuando el 10% del elemento es visible
+                    rootMargin: '0px 0px -50px 0px' // Trigger un poco antes de llegar al elemento
+                }
+            );
+
+            panels.forEach(panel => {
+                panelObserver.observe(panel);
+            });
 
         function throttle(func, limit) {
             let inThrottle;
@@ -73,9 +111,8 @@
             }
         }
 
-        const throttledCheckScroll = throttle(checkScroll, 100);
 
-        window.addEventListener('scroll', throttledCheckScroll);
+
     });
 </script>
 

@@ -188,3 +188,110 @@ h2, h3{
     margin: 10px;
 }
 
+.button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.25em 2em;
+  border: #7cf582 solid 0.15em;
+  border-radius: 0.25em;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+  max-width: 120px;
+}
+
+.button p {
+  z-index: 1;
+}
+
+.button:hover {
+  color: #000000;
+}
+
+.button:active {
+  border-color: rgb(0, 128, 128);
+}
+
+.button::after, .button::before {
+  content: "";
+  position: absolute;
+  width: 9em;
+  aspect-ratio: 1;
+  background: #49a466;
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, background 300ms;
+}
+
+.button::before {
+  left: 0;
+  transform: translateX(-8em);
+}
+
+.button::after {
+  right: 0;
+  transform: translateX(8em);
+}
+
+.button:hover:before {
+  transform: translateX(-1em);
+}
+
+.button:hover:after {
+  transform: translateX(1em);
+}
+
+.button:active:before,
+.button:active:after {
+  background: teal;
+}
+
+
+.navbar-nav li a {
+    display: block;
+}
+
+.navbar-nav > li {
+    position: relative;
+}
+
+.navbar-nav li ul {
+    display: none;
+    position: absolute;
+    top: 100%; /* Alinea el menú justo debajo del enlace "User" */
+    left: 0;
+    min-width: 140px;
+    background-color: #9ec94a;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.navbar-nav li:hover > ul {
+    display: block;
+}
+
+.dropdown-menu li a {
+    color: #fff; /* Cambia el color del texto en el menú desplegable */
+    padding: 8px 12px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #7ca93c; /* Cambia el color al pasar el mouse */
+}
+
+.with-user {
+    background-color: #9ec94a;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap;
+}

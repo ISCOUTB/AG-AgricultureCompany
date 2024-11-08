@@ -50,7 +50,7 @@
     </nav>
     {% else %}
     <!-- Navbar para usuarios autenticados -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark gradient-custom-3">
         <div class="container">
             <a class="navbar-brand" href="/">Welcome Back!</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,8 +61,13 @@
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/cultivation">Cultivation</a></li>
                     <li class="nav-item"><a class="nav-link" href="/silocreation">Inventory</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="/profile">User</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

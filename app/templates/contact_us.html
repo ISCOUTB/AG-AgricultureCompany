@@ -1,36 +1,47 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-
-
-<div class="container">
+<div class="container mt-5">
     <h2 class="dancing-script-Tittle">Meet Our Team</h2>
-    <section class="team">
-        <div class="member">
-            <img src="images/Camila.jpg" class="profile-img">
-            <h2>Camila Andrea Lozano Valle</h2>
+    <div style="display: flex; flex-direction: row; gap: 1px; width: 100%; height: 100%; object-fit: cover; border-radius: 10px">
+    <div class="card">
+        <img src="../images/Camila.jpg" alt="Team Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+        <div class="card__content">
+        <link rel="stylesheet" href="../styles/styles4.css">
+          <p class="card__title">Camila Andrea Lozano Valle
             <h5>vallec@utb.edu.co</h5>
-            <p>Double Major student: electronic engineering and systems engineering with interest in Automated processes and enjoy her free time playing some games and doing puzzles.</p>
+          </p><p class="card__description">Double Major student: electronic engineering and systems engineering with interest in Automated processes and enjoy her free time playing some games and doing puzzles.</p>
         </div>
-        <div class="member">
-            <img src="images/Miguel.jpg" class="profile-img">
-            <h2>Miguel Angel Cuentas Barreto</h2>
-            <h5>barretom@utb.edu.co</h5>
-            <p>Double Major student in data science and systems engineering with an interest in data analysis who also enjoys singing and regularly participates in musical events.</p>
+      </div>
+      <div class="card">
+        <img src="../images/Miguel.jpg" alt="Team Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+            <div class="card__content">
+            <link rel="stylesheet" href="../styles/styles4.css">
+                <p class="card__title">Miguel Angel Cuentas Barreto
+                <h5>barretom@utb.edu.co</h5>
+                </p><p class="card__description">Double Major student in data science and systems engineering with an interest in data analysis who also enjoys singing and regularly participates in musical events.</p>
+            </div>
         </div>
-        <div class="member">
-            <img src="images/Miguel.jpg" class="profile-img">
-            <h2>Nicolás Molina Díaz</h2>
-            <h5>nmolina@utb.edu.co</h5>
-            <p>Junior programmer and Systems Engineering student who enjoys writing songs, playing the piano, programming, video games, and watching football in his free time.</p>
-        </div>
-        <div class="member">
-            <img src="images/Nestor.jpg" class="profile-img">
-            <h2>Nestor Jose Doria Doria</h2>
-            <h5>ndoria@utb.edu.co</h5>
-            <p>Student of systems engineering and computing with interest in cybersecurity  who likes to build model kits.</p>
-        </div>
+        <div class="card">
+            <img src="../images/Miguel.jpg" alt="Team Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+            <div class="card__content">
+            <link rel="stylesheet" href="../styles/styles4.css">
+              <p class="card__title">Nicolás Molina Díaz
+                <h5>nmolina@utb.edu.co</h5>
+              </p><p class="card__description">Junior programmer and Systems Engineering student who enjoys writing songs, playing the piano, programming, video games, and watching football in his free time.</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="../images/Nestor.jpg" alt="Team Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+            <div class="card__content">
+            <link rel="stylesheet" href="../styles/styles4.css">
+              <p class="card__title">Nestor Jose Doria Doria
+                <h5>ndoria@utb.edu.co</h5>
+              </p><p class="card__description">Student of systems engineering and computing with interest in cybersecurity  who likes to build model kits.</p>
+            </div>
+          </div>
     </section>
+</div>
 </div>
 
 
