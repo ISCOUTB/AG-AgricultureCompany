@@ -32,10 +32,10 @@ border-bottom-right-radius: .3rem;
 background: green;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #3b8357, #49a466, #75bb48, #000000);
+background: -webkit-linear-gradient(to right, #3b8357, #49a466, #75bb48, #9ec94a);
 
 /* W3C, IE 10+/ ge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, #3b8357, #49a466, #75bb48, #000000 ) !important;
+background: linear-gradient(to right, #3b8357, #49a466, #75bb48, #9ec94a ) !important;
 
 
 
@@ -295,5 +295,9 @@ h2, h3{
 }*/
 
 .dropdown-menu{
-    background-color: #75bb48;
+    background-color: #9ec94a;
+}
+
+.dropdown-menu a:hover {
+    background-color: #7ca93c;
 }

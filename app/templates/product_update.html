@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Product Information Form</h1>
+    <p>Enter the product information:</p>
+    <br>
+    <form action="/product_detail" method="post">
+        <input type="hidden" id="op" name="op" value="U">
+               <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_Silo">Silo</span>
+            <input type="number" class="form-control" name="silo" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_Silo" placeholder={{silo}} value={{silo}} readonly>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_id">ID</span>
+            <input type="number" class="form-control" name="id_product" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_idt" placeholder={{id_product}} value={{id_product}} readonly>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_Type">Type</span>
+            <input type="text" class="form-control" name="type" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_Type">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_weight">Weight of the product</span>
+            <input type="number" class="form-control" name="weight" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_area" step="0.1">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_sellprice">Sell price ($/kg)</span>
+            <input type="number" class="form-control" name="sellprice" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_sellprice" step="0.1">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_amount">Amount (boxes)</span>
+            <input type="number" class="form-control" name="amount" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_amount" step="1">
+        </div>
+
+        <br>
+        <input class="btn btn-primary" type="submit" name="form" value="Submit"/>
+    </form>
+</div>
+
+{% endblock %}

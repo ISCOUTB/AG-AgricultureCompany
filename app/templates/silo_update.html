@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Silo Information Form</h1>
+    <p>Enter the silo information:</p>
+    <br>
+    <form action="/silo_detail" method="post">
+        <input type="hidden" id="op" name="op" value="U">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_id">ID</span>
+            <input type="number" class="form-control" name="id_silo" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_idt" placeholder={{id_silo}} value={{id_silo}} readonly>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_capacity">Capacity of the silo (boxes)</span>
+            <input type="number" class="form-control" name="capacity" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_capacity">
+        </div>
+
+        <br>
+        <input class="btn btn-primary" type="submit" name="form" value="Submit"/>
+    </form>
+</div>
+
+{% endblock %}

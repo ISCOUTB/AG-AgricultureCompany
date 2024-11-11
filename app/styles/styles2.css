@@ -32,10 +32,10 @@ border-bottom-right-radius: .3rem;
 background: green;
 
 /* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #3b8357, #49a466, #75bb48, #9ec94a);
+background: -webkit-linear-gradient(to right, #3b8357, #49a466, #75bb48, #000000);
 
 /* W3C, IE 10+/ ge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, #3b8357, #49a466, #75bb48, #9ec94a ) !important;
+background: linear-gradient(to right, #3b8357, #49a466, #75bb48, #000000 ) !important;
 
 
 
@@ -251,7 +251,7 @@ h2, h3{
 }
 
 
-.navbar-nav li a {
+/*.navbar-nav li a {
     display: block;
 }
 
@@ -262,7 +262,7 @@ h2, h3{
 .navbar-nav li ul {
     display: none;
     position: absolute;
-    top: 100%; /* Alinea el menú justo debajo del enlace "User" */
+    top: 100%;
     left: 0;
     min-width: 140px;
     background-color: #9ec94a;
@@ -277,19 +277,23 @@ h2, h3{
 }
 
 .dropdown-menu li a {
-    color: #fff; /* Cambia el color del texto en el menú desplegable */
+    color: #fff;
     padding: 8px 12px;
     display: block;
     text-decoration: none;
 }
 
 .dropdown-menu li a:hover {
-    background-color: #7ca93c; /* Cambia el color al pasar el mouse */
-}
+    background-color: #7ca93c;
+}*/
 
-.with-user {
+/*.with-user {
     background-color: #9ec94a;
     padding: 8px;
     text-align: left;
     white-space: nowrap;
+}*/
+
+.dropdown-menu{
+    background-color: #75bb48;
 }

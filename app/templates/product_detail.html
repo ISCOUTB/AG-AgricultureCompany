@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Product Registered</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Product Information</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Silo:</strong> {{ value2 }}</li>
+                <li class="list-group-item"><strong>ID:</strong> {{ value.id_product }}</li>
+                <li class="list-group-item"><strong>Type of product:</strong> {{ value.type }}</li>
+                <li class="list-group-item"><strong>Weight of the product:</strong> {{ value.weight }} kg</li>
+                <li class="list-group-item"><strong>Sell Price:</strong> $ {{ value.sellprice }} </li>
+                <li class="list-group-item"><strong>Amount:</strong> {{ value.amount }} boxes</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<br>
+<a class="btn btn-primary" href="/silocreation">Back To Silo</a>
+
+{% endblock %}
