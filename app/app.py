@@ -175,6 +175,56 @@ async def silo(request: Request):
     user_logged_in = is_logged_in(request)
     return templates.TemplateResponse("silo.html", {"request": request, "user_logged_in": user_logged_in})
 
+@app.get("/silo_detail", response_class=HTMLResponse)
+async def silo_detail(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("silo_detail.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/silo_update", response_class=HTMLResponse)
+async def silo_update(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("silo_update.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/show_product", response_class=HTMLResponse)
+async def show_product(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("show_product.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/product_detail", response_class=HTMLResponse)
+async def product_detail(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("product_detail.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/product_update", response_class=HTMLResponse)
+async def product_update(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("product_update.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/crop_detail", response_class=HTMLResponse)
+async def crop_detail(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("crop_detail.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/crop_update", response_class=HTMLResponse)
+async def crop_update(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("crop_update.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/harvest", response_class=HTMLResponse)
+async def harvest(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("harvest.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/harvest_detail", response_class=HTMLResponse)
+async def harvest_detail(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("harvest_detail.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/harvest_update", response_class=HTMLResponse)
+async def harvest_update(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("harvest_update.html", {"request": request, "user_logged_in": user_logged_in})
+
 # Montar archivos estáticos
 app.mount("/styles", StaticFiles(directory="styles"), name="styles2")
 
