@@ -9,6 +9,7 @@ from datetime import date
 from agriculture.user.database import SessionLocal, get_db, engine, Base
 from agriculture.user.models import User, Cultivo, Cosecha, Silo, PuntoVenta, Vehiculo, Venta, Encargo
 from pydantic import BaseModel, EmailStr
+from sqlalchemy.exc import SQLAlchemyError
 
 # Crear todas las tablas en la base de datos si no existen
 Base.metadata.create_all(bind=engine)
@@ -157,7 +158,7 @@ async def register_crop(
         db.add(new_crop)
         db.commit()
         db.refresh(new_crop)
-        return templates.TemplateResponse("crop.html", {"request": request, "message": "Crop registered successfully!"})
+        return templates.TemplateResponse("crop_detail.html", {"request": request, "message": "Crop registered successfully!"})
     except Exception as e:
         db.rollback()
         return templates.TemplateResponse("crop.html", {"request": request, "error": f"Failed to register crop. Error: {str(e)}"})
@@ -391,10 +392,11 @@ async def register_harvest(
     try:
         new_harvest = Cosecha(
             ID_Cosecha=id_harvest,
-            Tipo=harvest_type,
+            Area=area,
             Fecha_cosecha=harvest_date,
-            Cantidad=quantity,
-            user_id=user_id
+            Cantidad_cosecha=quantity,
+            ID_Cultivo=id_crop,
+            user_id=user_id,
         )
         db.add(new_harvest)
         db.commit()
@@ -435,6 +437,253 @@ async def update_harvest(
     except Exception as e:
         db.rollback()
         return templates.TemplateResponse("harvest_update.html", {"request": request, "error": f"Failed to update harvest. Error: {str(e)}"})
+
+@app.get("/harvest/{id_crop}", response_class=HTMLResponse)
+async def harvest_form(request: Request, id_crop: int, db: Session = Depends(get_db)):
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    # Obtener el cultivo y verificar que pertenece al usuario actual
+    crop = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
+    if not crop:
+        return RedirectResponse(url="/cultivation")
+
+    # Cargar el formulario `harvest` con datos prellenados del cultivo
+    return templates.TemplateResponse("harvest.html", {
+        "request": request,
+        "id_harvest": id_crop,
+        "crop_type": crop.Tipo,
+        "area": crop.Area_cultivada
+    })
+
+@app.get("/harvested", response_class=HTMLResponse)
+async def harvested(request: Request, db: Session = Depends(get_db)):
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    # Obtener todas las cosechas del usuario
+    user_harvests = db.query(Cosecha).filter(Cosecha.user_id == user_id).all()
+    harvests_data = [
+        (harvest.ID_Cosecha, harvest.Tipo, harvest.Fecha_cosecha, harvest.Cantidad_cosecha, harvest.Area)
+        for harvest in user_harvests
+    ]
+
+    return templates.TemplateResponse("harvested.html", {
+        "request": request,
+        "user_logged_in": True,
+        "value": harvests_data
+    })
+
+
+
+#Endpoints distribucion
+@app.get("/distribution", response_class=HTMLResponse)
+async def distribution(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("distribution.html", {"request": request, "user_logged_in": user_logged_in})
+
+#Endpoints encargos
+@app.get("/assignments", response_class=HTMLResponse)
+async def assignmnets(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("assignments.html", {"request": request, "user_logged_in": user_logged_in})
+
+
+# GET para listar todos los encargos del usuario
+@app.get("/assignment_creation", response_class=HTMLResponse)
+async def assignment_creation(request: Request, db: Session = Depends(get_db)):
+    user_logged_in = is_logged_in(request)
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    # Filtrar encargos del usuario actual
+    user_assignments = db.query(Encargo).filter(Encargo.user_id == user_id).all()
+    return templates.TemplateResponse("assignment_creation.html", {
+        "request": request,
+        "user_logged_in": user_logged_in,
+        "assignments": user_assignments
+    })
+
+
+# POST para registrar un nuevo encargo
+@app.post("/assignment_detail", response_class=HTMLResponse)
+async def register_assignment(
+        request: Request,
+        fecha: date = Form(...),
+        cantidad_producto: float = Form(...),
+        id_vehiculo: int = Form(...),
+        punto_venta_id: int = Form(...),
+        db: Session = Depends(get_db)
+):
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    try:
+        # Crear y agregar el nuevo encargo
+        new_assignment = Encargo(
+            Fecha=fecha,
+            Cantidad_producto=cantidad_producto,
+            ID_Vehiculo=id_vehiculo,
+            Punto_Venta_ID=punto_venta_id,
+            user_id=user_id
+        )
+        db.add(new_assignment)
+        db.commit()
+        db.refresh(new_assignment)
+        return templates.TemplateResponse("assignment_detail.html", {
+            "request": request,
+            "message": "Assignment registered successfully!",
+            "assignment": new_assignment
+        })
+    except Exception as e:
+        db.rollback()
+        return templates.TemplateResponse("assignment_detail.html", {
+            "request": request,
+            "error": f"Failed to register assignment. Error: {str(e)}"
+        })
+@app.get("/assignment_update", response_class=HTMLResponse)
+async def assignment_update(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("assignment_update.html", {"request": request, "user_logged_in": user_logged_in})
+
+
+#Endpoints vehiculos
+
+@app.get("/vehicles", response_class=HTMLResponse)
+async def vehicles(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("vehicles.html", {"request": request, "user_logged_in": user_logged_in})
+
+
+# GET para listar todos los vehículos del usuario
+@app.get("/vehicle_creation", response_class=HTMLResponse)
+async def vehicle_creation(request: Request, db: Session = Depends(get_db)):
+    user_logged_in = is_logged_in(request)
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    # Filtrar vehículos del usuario actual
+    user_vehicles = db.query(Vehiculo).filter(Vehiculo.user_id == user_id).all()
+    return templates.TemplateResponse("vehicle_creation.html", {
+        "request": request,
+        "user_logged_in": user_logged_in,
+        "vehicles": user_vehicles
+    })
+
+# POST para registrar un nuevo vehículo
+@app.post("/vehicle_detail", response_class=HTMLResponse)
+async def register_vehicle(
+        request: Request,
+        matricula: str = Form(...),
+        capacidad_carga: float = Form(...),
+        id_cosecha: int = Form(...),
+        db: Session = Depends(get_db)
+):
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    try:
+        # Crear y agregar el nuevo vehículo
+        new_vehicle = Vehiculo(
+            Matricula=matricula,
+            Capacidad_Carga=capacidad_carga,
+            ID_Cosecha=id_cosecha,
+            user_id=user_id
+        )
+        db.add(new_vehicle)
+        db.commit()
+        db.refresh(new_vehicle)
+        return templates.TemplateResponse("vehicle_detail.html", {
+            "request": request,
+            "message": "Vehicle registered successfully!",
+            "vehicle": new_vehicle
+        })
+    except Exception as e:
+        db.rollback()
+        return templates.TemplateResponse("vehicle_detail.html", {
+            "request": request,
+            "error": f"Failed to register vehicle. Error: {str(e)}"
+        })
+
+
+@app.get("/vehicle_update", response_class=HTMLResponse)
+async def vehicle_update(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("vehicle_update.html", {"request": request, "user_logged_in": user_logged_in})
+
+
+@app.get("/pos", response_class=HTMLResponse)
+async def pos(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("pos.html", {"request": request, "user_logged_in": user_logged_in})
+
+
+# GET para listar todos los puntos de venta del usuario
+@app.get("/pos_creation", response_class=HTMLResponse)
+async def pos_creation(request: Request, db: Session = Depends(get_db)):
+    user_logged_in = is_logged_in(request)
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    # Filtrar puntos de venta del usuario actual
+    user_pos = db.query(PuntoVenta).filter(PuntoVenta.user_id == user_id).all()
+    return templates.TemplateResponse("pos_creation.html", {
+        "request": request,
+        "user_logged_in": user_logged_in,
+        "points_of_sale": user_pos
+    })
+
+# POST para registrar un nuevo punto de venta
+@app.post("/pos_detail", response_class=HTMLResponse)
+async def register_pos(
+        request: Request,
+        nombre: str = Form(...),
+        direccion: str = Form(...),
+        db: Session = Depends(get_db)
+):
+    user_id = get_current_user_id(request)
+    if not user_id:
+        return RedirectResponse(url="/login")
+
+    try:
+        # Crear y agregar el nuevo punto de venta
+        new_pos = PuntoVenta(
+            Nombre=nombre,
+            Direccion=direccion,
+            user_id=user_id
+        )
+        db.add(new_pos)
+        db.commit()
+        db.refresh(new_pos)
+        return templates.TemplateResponse("pos_detail.html", {
+            "request": request,
+            "message": "Point of Sale registered successfully!",
+            "pos": new_pos
+        })
+    except Exception as e:
+        db.rollback()
+        return templates.TemplateResponse("pos_detail.html", {
+            "request": request,
+            "error": f"Failed to register Point of Sale. Error: {str(e)}"
+        })
+@app.get("/pos_update", response_class=HTMLResponse)
+async def pos_update(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("pos_update.html", {"request": request, "user_logged_in": user_logged_in})
+
+
+@app.get("/sales", response_class=HTMLResponse)
+async def sales(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("sales.html", {"request": request, "user_logged_in": user_logged_in})
+
 
 # Montar archivos estáticos
 app.mount("/styles", StaticFiles(directory="styles"), name="styles2")

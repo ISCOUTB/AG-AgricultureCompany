@@ -11,16 +11,16 @@
         <div class="col-md-6">
             <h3>Harvest Information</h3>
             <ul class="list-group">
-                <li class="list-group-item"><strong>ID:</strong> {{ value.id_harvest }}</li>
-                <li class="list-group-item"><strong>Crop Type:</strong> {{ value.type }}</li>
-                <li class="list-group-item"><strong>Harvest Date:</strong> {{ value.date }}</li>
-                <li class="list-group-item"><strong>Weight:</strong> {{ value.weight }} kg</li>
+                <li class="list-group-item"><strong>ID:</strong> {{ value.id_cosecha }}</li>
+                <li class="list-group-item"><strong>Harvest Date:</strong> {{ value.fecha_cosecha }}</li>
+                <li class="list-group-item"><strong>Quantity:</strong> {{ value.cantidad_cosecha }} kg</li>
+                <li class="list-group-item"><strong>Area:</strong> {{ value.area }} m^3</li>
             </ul>
         </div>
     </div>
 </div>
 
 <br>
-<a class="btn btn-primary" href="/harvested">Go To Harvest</a>
+<a class="btn btn-primary gradient-custom-3" href="/harvested">Go To Harvest</a>
 
 {% endblock %}

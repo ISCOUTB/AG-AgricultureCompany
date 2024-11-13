@@ -13,27 +13,26 @@
             <input type="number" class="form-control" name='id_harvest' aria-label="Sizing example input"
                    aria-describedby="inputGroup_id" placeholder={{id_harvest}} value={{id_harvest}} readonly>
         </div>
-
         <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup_cropType">Crop Type</span>
-            <input type="text" class="form-control" name="crop_type" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_cropType">
-        </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup_date">Harvest Date</span>
-            <input type="date" class="form-control" name="date" aria-label="Sizing example input"
+            <span class="input-group-text" id="inputGroup_harvest_date">Harvest Date</span>
+            <input type="date" class="form-control" name="harvest_date" aria-label="Sizing example input"
                    aria-describedby="inputGroup_date">
         </div>
 
+
         <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup_weight">Weight (Kg)</span>
-            <input type="number" class="form-control" name="weight" aria-label="Sizing example input"
+            <span class="input-group-text" id="inputGroup_quantity">Quantity</span>
+            <input type="number" class="form-control" name="quantity" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_quantity" step="0.1">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_area">Area (Km^3)</span>
+            <input type="number" class="form-control" name="area" aria-label="Sizing example input"
                    aria-describedby="inputGroup_area" step="0.1">
         </div>
 
         <br>
-        <input class="btn btn-primary" type="submit" name="form" value="Submit"/>
+        <input class="btn btn-primary gradient-custom-3" type="submit" name="form" value="Submit"/>
     </form>
 </div>
 
