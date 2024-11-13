@@ -17,32 +17,33 @@
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_cropType">Crop Type</span>
             <input type="text" class="form-control" name="crop_type" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_cropType">
+                   aria-describedby="inputGroup_cropType" required>
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_area">Area of Cultivation</span>
             <input type="number" class="form-control" name="area" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_area" step="0.1">
+                   aria-describedby="inputGroup_area" step="0.1" required>
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_date">Planting Date</span>
-            <input type="date" class="form-control" name="date" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_date">
+            <input type="date" class="form-control" name="planting_date" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_date" required>
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_amount">Quantity Planted</span>
-            <input type="number" class="form-control" name="amount" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_amount">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_growing_state">Growing State</span>
+            <input type="text" class="form-control" name="growing_state" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_growing_date" required>
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_expenses">Expenses</span>
-            <input type="number" class="form-control" name="price" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_expenses" step="0.1">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_needs">Needs and treatments</span>
+            <input type="text" class="form-control" name="needs" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_needs" required>
         </div>
+
         <br>
         <input class="btn btn-primary gradient-custom-3" type="submit" name="form" value="Submit"/>
     </form>
