@@ -5,12 +5,13 @@ from .database import Base
 from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey, DECIMAL, Text
 from sqlalchemy.orm import relationship
 from .database import Base
-
+USERS_ID="users.id"
 
 class User(Base):
+    
     __tablename__ = "users"  # Nombre de la tabla en la base de datos
 
-    # Definici髇 de las columnas en la tabla "users"
+    # Definici贸n de las columnas en la tabla "users"
     id = Column(Integer, primary_key=True, index=True)
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
@@ -39,8 +40,8 @@ class Cultivo(Base):
     Estado_crecimiento = Column(String, nullable=False)
     Necesidades_tratamiento = Column(Text, nullable=True)
 
-    # Clave for醤ea y relaci髇 con User
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    # Clave for谩nea y relaci贸n con User
+    user_id = Column(Integer, ForeignKey(USERS_ID), nullable=False)
     user = relationship("User", back_populates="cultivos")
 
 
@@ -53,8 +54,8 @@ class Cosecha(Base):
     Area = Column(Float, nullable=False)
     ID_Cultivo = Column(Integer, ForeignKey("cultivo.ID_Cultivo"), nullable=False)
 
-    # Clave for醤ea y relaci髇 con User
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    # Clave for谩nea y relaci贸n con User
+    user_id = Column(Integer, ForeignKey(USERS_ID), nullable=False)
     user = relationship("User", back_populates="cosechas")
 
 
@@ -67,8 +68,8 @@ class Silo(Base):
     Contenido = Column(Float, nullable=False)
     ID_Cosecha = Column(Integer, ForeignKey("cosecha.ID_Cosecha"), nullable=False)
 
-    # Clave for醤ea y relaci髇 con User
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    # Clave for谩nea y relaci贸n con User
+    user_id = Column(Integer, ForeignKey(USERS_ID), nullable=False)
     user = relationship("User", back_populates="silos")
 
 
@@ -79,8 +80,8 @@ class PuntoVenta(Base):
     Nombre = Column(String(50), nullable=False)
     Direccion = Column(String(100), nullable=False)
 
-    # Clave for醤ea y relaci髇 con User
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    # Clave for谩nea y relaci贸n con User
+    user_id = Column(Integer, ForeignKey(USERS_ID), nullable=False)
     user = relationship("User", back_populates="puntos_venta")
 
 
@@ -93,8 +94,8 @@ class Venta(Base):
     Precio = Column(DECIMAL(10, 2), nullable=False)
     ID_Punto_Venta = Column(Integer, ForeignKey("punto_venta.ID_Punto_Venta"), nullable=False)
 
-    # Clave for醤ea y relaci髇 con User
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    # Clave for谩nea y relaci贸n con User
+    user_id = Column(Integer, ForeignKey(USERS_ID), nullable=False)
     user = relationship("User", back_populates="ventas")
 
 
@@ -106,8 +107,8 @@ class Vehiculo(Base):
     Capacidad_Carga = Column(Float, nullable=False)
     ID_Cosecha = Column(Integer, ForeignKey("cosecha.ID_Cosecha"), nullable=False)
 
-    # Clave for醤ea y relaci髇 con User
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    # Clave for谩nea y relaci贸n con User
+    user_id = Column(Integer, ForeignKey(USERS_ID), nullable=False)
     user = relationship("User", back_populates="vehiculos")
 
 
@@ -120,6 +121,6 @@ class Encargo(Base):
     ID_Vehiculo = Column(Integer, ForeignKey("vehiculo.ID_Vehiculo"), nullable=False)
     Punto_Venta_ID = Column(Integer, ForeignKey("punto_venta.ID_Punto_Venta"), nullable=False)
 
-    # Clave for醤ea y relaci髇 con User
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    # Clave for谩nea y relaci贸n con User
+    user_id = Column(Integer, ForeignKey(USERS_ID), nullable=False)
     user = relationship("User", back_populates="encargos")
