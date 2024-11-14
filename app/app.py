@@ -657,6 +657,16 @@ async def sales_creation(request: Request):
     user_logged_in = is_logged_in(request)
     return templates.TemplateResponse("sales_creation.html", {"request": request, "user_logged_in": user_logged_in})
 
+@app.get("/products_in_silo", response_class=HTMLResponse)
+async def products_in_silo(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("products_in_silo.html", {"request": request, "user_logged_in": user_logged_in})
+
+@app.get("/submit_success", response_class=HTMLResponse)
+async def submit_success(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("submit_success.html", {"request": request, "user_logged_in": user_logged_in})
+
 
 # Montar archivos estaticos
 app.mount("/styles", StaticFiles(directory="styles"), name="styles2")

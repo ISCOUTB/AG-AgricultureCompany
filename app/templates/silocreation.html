@@ -5,7 +5,7 @@
 <h2>Silo creation</h2>
 <div class="d-flex justify-content-between align-items-center">
     <a href="/silo" class="btn btn-success gradient-custom-2">Add New Silo</a>
-    <a href="/productcreation" class="btn btn-primary gradient-custom-2">See Products Created</a>
+    <a href="/index" class="btn btn-primary gradient-custom-2">Back</a>
 </div>
 <table class="table">
   <thead class="thead-dark">
@@ -23,7 +23,7 @@
         <td>
             <a href="/silo_update/{{line[0]}}" class="btn btn-warning btn-xs">Edit</a>
             <a href="/silo_delete/{{line[0]}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
-            <a href="/show_products/{{line[0]}}" class="btn btn-success btn-xs">Show products</a>
+            <a href="/products_in_silo/{{line[0]}}" class="btn btn-success btn-xs">Show products</a>
         </td>
     </tr>
   {% endfor %}
