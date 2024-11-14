@@ -22,6 +22,7 @@ templates = Jinja2Templates(directory="templates")
 cultivation="cultivation.html"
 cultivation2="/cultivation"
 silo="silo.html"
+harvest_update="harvest_update.html"
 
 # Función para verificar si el usuario está autenticado
 def get_current_user_id(request: Request):
@@ -429,7 +430,7 @@ async def update_harvest(
 
     db_harvest = db.query(Cosecha).filter(Cosecha.ID_Cosecha == id_harvest, Cosecha.user_id == user_id).first()
     if not db_harvest:
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "error": "Harvest not found or unauthorized access."})
+        return templates.TemplateResponse(harvest_update, {"request": request, "error": "Harvest not found or unauthorized access."})
 
     db_harvest.Tipo = harvest_type
     db_harvest.Fecha_cosecha = harvest_date
@@ -438,10 +439,10 @@ async def update_harvest(
     try:
         db.commit()
         db.refresh(db_harvest)
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "message": "Harvest updated successfully!"})
+        return templates.TemplateResponse(harvest_update, {"request": request, "message": "Harvest updated successfully!"})
     except Exception as e:
         db.rollback()
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "error": f"Failed to update harvest. Error: {str(e)}"})
+        return templates.TemplateResponse(harvest_update, {"request": request, "error": f"Failed to update harvest. Error: {str(e)}"})
 
 @app.get("/harvest/{id_crop}", response_class=HTMLResponse)
 async def harvest_form(request: Request, id_crop: int, db: Session = Depends(get_db)):
