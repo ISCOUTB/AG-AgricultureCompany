@@ -4,37 +4,32 @@
 
 <div class="page-header">
     <h1>Assignment Information Form</h1>
-    <p>Enter the assignment information:</p>
+    <p>Enter the Uptade of the Assignment information:</p>
     <br>
     <form action="/assignment_detail" method="post">
         <input type="hidden" id="op" name="op" value="U">
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup_id">ID</span>
-            <input type="number" class="form-control" name="id_assignment" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_idt" placeholder={{id_assignment}} value={{id_assignment}} readonly>
+            <input type="number" class="form-control" name="id_assignment" aria-label="Sizing example input" placeholder={{id_assignment}} value={{id_assignment}} readonly>
         </div>
 
          <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_date">Assignment Date</span>
-            <input type="date" class="form-control" name="date" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_date">
+            <input type="date" class="form-control" name="date" aria-label="Sizing example input">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_area">Quantity</span>
-            <input type="number" class="form-control" name="quantity" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_quantity" step="1" min="0">
+            <input type="number" class="form-control" name="quantity" aria-label="Sizing example input" step="1" min="0">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_vehicle_id">Vehicle ID</span>
-            <input type="number" class="form-control" name="vehicle_id" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_vehicle_id" min="0">
+            <input type="number"  min="0" class="form-control" name="vehicle_id" aria-label="Sizing example input">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_pos">POS ID</span>
-            <input type="number" class="form-control" name="pos_id" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_pos_id" min="0">
+            <input type="number"  min="0" class="form-control" name="pos_id" aria-label="Sizing example input">
         </div>
 
 

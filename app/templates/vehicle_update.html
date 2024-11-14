@@ -4,32 +4,29 @@
 
 <div class="page-header">
     <h1>Vehicle Information Form</h1>
-    <p>Enter the vehicle information:</p>
+    <p>Enter the update of the vehicle information:</p>
     <br>
     <form action="/vehicle_detail" method="post">
         <input type="hidden" id="op" name="op" value="U">
         <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup_id">ID</span>
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_id">ID (can't change)</span>
             <input type="number" class="form-control" name="id_vehicle" aria-label="Sizing example input"
                    aria-describedby="inputGroup_idt" placeholder={{id_vehicle}} value={{id_vehicle}} readonly>
         </div>
 
          <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_number_plate">Number Plate</span>
-            <input type="text" class="form-control" name="number_plate" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_number_plate">
+            <input type="text" class="form-control" name="number_plate" aria-label="Sizing example input">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_area">Capacity</span>
-            <input type="number" class="form-control" name="capacity" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_capacity" step="1" min="0">
+            <input type="number" class="form-control" name="capacity" aria-label="Sizing example input" step="1" min="0">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text text-light gradient-custom-2" id="inputGroup_harvest_id">Harvest ID</span>
-            <input type="number" class="form-control" name="harvest_id" aria-label="Sizing example input"
-                   aria-describedby="inputGroup_harvest_id" min="0">
+            <input type="number" class="form-control" name="harvest_id" aria-label="Sizing example input">
         </div>
 
 

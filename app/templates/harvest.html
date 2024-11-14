@@ -6,8 +6,8 @@
     <h1>Harvest Information Form</h1>
     <p>Enter the crop information:</p>
     <br>
-    <form action="/harvest_detail" method="post">
-        <input type="hidden" id="op" name="op" value="I">
+    <form action="/harvest_detail/{{ id_crop }}" method="post">
+        <input type="hidden" name="id_crop" value="{{ id_crop }}">
         <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup_id">ID</span>
             <input type="number" class="form-control" name='id_harvest' aria-label="Sizing example input"

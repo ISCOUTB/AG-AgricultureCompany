@@ -2,9 +2,9 @@
 
 {% block page_content %}
 <section class="content-wrapper-table">
-<h2>Vehicles</h2>
+<h2>Point Of Sales (POS)</h2>
 <div class="d-flex justify-content-between align-items-center">
-    <a href="/pos_creation" class="btn btn-success gradient-custom-2">Add New Vehicles</a>
+    <a href="/pos_creation" class="btn btn-success gradient-custom-2">Add New POS</a>
     <a href="/distribution" class="btn btn-primary gradient-custom-2">Back</a>
 </div>
 <table class="table">
@@ -13,6 +13,7 @@
         <th scope="col">ID</th>
         <th scope="col">POS Name</th>
         <th scope="col">Location</th>
+        <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -22,8 +23,6 @@
         <td>{{ line[1] }}</td>
         <td>{{ line[2] }}</td>
         <td>{{ line[3] }}</td>
-        <td>{{ line[4] }}</td>
-        <td>{{ line[5] }}</td>
         <td>
             <a href="/pos_update/{{line[0]}}" class="btn btn-warning btn-xs">Edit</a>
             <a href="/pos_delete/{{line[0]}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>

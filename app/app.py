@@ -331,89 +331,52 @@ async def update_silo(request: Request, id_silo: int, db: Session = Depends(get_
         return RedirectResponse(url="/silocreation")
     return templates.TemplateResponse("silo_update.html", {"request": request, "id_silo": id_silo, "silo": silo})
 
-# Endpoints para productos
-@app.get("/productcreation", response_class=HTMLResponse)
-async def productcreation(request: Request, db: Session = Depends(get_db)):
-    user_id = get_current_user_id(request)
-    if not user_id:
-        return RedirectResponse(url="/login")
-
-    products = db.query(Cosecha).filter(Cosecha.user_id == user_id).all()
-    value = [
-        {
-            "id_product": product.ID_Cosecha,
-            "type": product.Tipo if hasattr(product, 'Tipo') else "N/A",
-            "weight": product.Cantidad_cosecha if hasattr(product, 'Cantidad_cosecha') else 0.0,
-            "sellprice": 0.0,
-            "amount": product.Area if hasattr(product, 'Area') else 0
-        }
-        for product in products
-    ]
-
-    return templates.TemplateResponse("productcreation.html", {
-        "request": request,
-        "user_logged_in": True,
-        "value": value
-    })
-
 # Endpoints para cosechas (harvests)
-@app.get("/harvested", response_class=HTMLResponse)
-async def harvested(request: Request, db: Session = Depends(get_db)):
-    user_id = get_current_user_id(request)
-    if not user_id:
-        return RedirectResponse(url="/login")
 
-    user_harvests = db.query(Cosecha).filter(Cosecha.user_id == user_id).all()
-    harvests_data = [
-        (harvest.ID_Cosecha, harvest.Tipo, harvest.Fecha_recoleccion, harvest.Cantidad)
-        for harvest in user_harvests
-    ]
 
-    return templates.TemplateResponse("harvested.html", {
-        "request": request,
-        "user_logged_in": True,
-        "value": harvests_data
-    })
-
-@app.post("/harvest_detail", response_class=HTMLResponse)
+@app.post("/harvest_detail/{id_crop}", response_class=HTMLResponse)
 async def register_harvest(
     request: Request,
-    id_harvest: int = Form(...),
-    area: float = Form(...),
+    id_crop: int,  # ID del cultivo obtenido desde la URL
     harvest_date: date = Form(...),
     quantity: float = Form(...),
-    id_crop: int = Form(...),
+    area: float = Form(...),
     db: Session = Depends(get_db)
 ):
     user_id = get_current_user_id(request)
     if not user_id:
         return RedirectResponse(url="/login")
 
+    # Verificar que el cultivo existe y pertenece al usuario actual
+    crop = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
+    if not crop:
+        return templates.TemplateResponse("cultivation.html", {"request": request, "error": "Crop not found or unauthorized access."})
+
     try:
         new_harvest = Cosecha(
-            ID_Cosecha=id_harvest,
-            Area=area,
+            ID_Cosecha=id_crop,
             Fecha_cosecha=harvest_date,
             Cantidad_cosecha=quantity,
+            Area=area,
             ID_Cultivo=id_crop,
-            user_id=user_id,
+            user_id=user_id
         )
         db.add(new_harvest)
         db.commit()
         db.refresh(new_harvest)
         return RedirectResponse(url="/harvested", status_code=302)
-    except SQLAlchemyError as e:
+    except Exception as e:
         db.rollback()
         return templates.TemplateResponse("harvest.html", {
             "request": request,
             "error": f"Failed to register harvest. Error: {str(e)}"
         })
 
-@app.get("/harvest_update", response_class=HTMLResponse)
+
+@app.post("/harvest_update/{id_harvest}", response_class=HTMLResponse)
 async def update_harvest(
     request: Request,
-    id_harvest: int = Form(...),
-    harvest_type: str = Form(...),
+    id_harvest: int,
     harvest_date: date = Form(...),
     quantity: float = Form(...),
     db: Session = Depends(get_db)
@@ -422,24 +385,30 @@ async def update_harvest(
     if not user_id:
         return RedirectResponse(url="/login")
 
+    # Buscar la cosecha del usuario actual
     db_harvest = db.query(Cosecha).filter(Cosecha.ID_Cosecha == id_harvest, Cosecha.user_id == user_id).first()
     if not db_harvest:
         return templates.TemplateResponse("harvest_update.html", {"request": request, "error": "Harvest not found or unauthorized access."})
 
-    db_harvest.Tipo = harvest_type
-    db_harvest.Fecha_cosecha = harvest_date
+    # Actualizar datos
+    db_harvest.Fecha_recoleccion = harvest_date
     db_harvest.Cantidad = quantity
 
     try:
         db.commit()
         db.refresh(db_harvest)
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "message": "Harvest updated successfully!"})
+        return RedirectResponse(url="/harvested", status_code=302)
     except Exception as e:
         db.rollback()
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "error": f"Failed to update harvest. Error: {str(e)}"})
+        return templates.TemplateResponse("harvest_update.html", {
+            "request": request,
+            "error": f"Failed to update harvest. Error: {str(e)}",
+            "harvest": db_harvest
+        })
 
 @app.get("/harvest/{id_crop}", response_class=HTMLResponse)
 async def harvest_form(request: Request, id_crop: int, db: Session = Depends(get_db)):
+    user_logged_in = is_logged_in(request)
     user_id = get_current_user_id(request)
     if not user_id:
         return RedirectResponse(url="/login")
@@ -449,12 +418,12 @@ async def harvest_form(request: Request, id_crop: int, db: Session = Depends(get
     if not crop:
         return RedirectResponse(url="/cultivation")
 
-    # Cargar el formulario `harvest` con datos prellenados del cultivo
+    # Cargar el formulario `harvest` con datos del cultivo
     return templates.TemplateResponse("harvest.html", {
         "request": request,
-        "id_harvest": id_crop,
-        "crop_type": crop.Tipo,
-        "area": crop.Area_cultivada
+        "user_logged_in": user_logged_in,
+        "id_crop": id_crop,
+        "crop": crop
     })
 
 @app.get("/harvested", response_class=HTMLResponse)
@@ -466,7 +435,7 @@ async def harvested(request: Request, db: Session = Depends(get_db)):
     # Obtener todas las cosechas del usuario
     user_harvests = db.query(Cosecha).filter(Cosecha.user_id == user_id).all()
     harvests_data = [
-        (harvest.ID_Cosecha, harvest.Tipo, harvest.Fecha_cosecha, harvest.Cantidad_cosecha, harvest.Area)
+        (harvest.ID_Cosecha, harvest.Fecha_cosecha, harvest.Cantidad_cosecha, harvest.Area, harvest.ID_Cultivo, harvest.user_id)
         for harvest in user_harvests
     ]
 
@@ -475,6 +444,7 @@ async def harvested(request: Request, db: Session = Depends(get_db)):
         "user_logged_in": True,
         "value": harvests_data
     })
+
 
 
 
@@ -678,14 +648,18 @@ async def pos_update(request: Request):
     user_logged_in = is_logged_in(request)
     return templates.TemplateResponse("pos_update.html", {"request": request, "user_logged_in": user_logged_in})
 
-
 @app.get("/sales", response_class=HTMLResponse)
 async def sales(request: Request):
     user_logged_in = is_logged_in(request)
     return templates.TemplateResponse("sales.html", {"request": request, "user_logged_in": user_logged_in})
 
+@app.get("/sales_creation", response_class=HTMLResponse)
+async def sales_creation(request: Request):
+    user_logged_in = is_logged_in(request)
+    return templates.TemplateResponse("sales_creation.html", {"request": request, "user_logged_in": user_logged_in})
 
-# Montar archivos estáticos
+
+# Montar archivos estaticos
 app.mount("/styles", StaticFiles(directory="styles"), name="styles2")
 app.mount("/images", StaticFiles(directory="images"), name="Miguel")
 app.mount("/styles", StaticFiles(directory="styles"), name="styles")
