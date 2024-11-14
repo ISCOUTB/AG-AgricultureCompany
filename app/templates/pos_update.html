@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>POS Information Form</h1>
+    <p>Enter the POS information:</p>
+    <br>
+    <form action="/assignment_detail" method="post">
+        <input type="hidden" id="op" name="op" value="U">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup_id">ID</span>
+            <input type="number" class="form-control" name="id_pos" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_id" placeholder={{id_pos}} value={{id_pos}} readonly>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_name">POS Name</span>
+            <input type="text" class="form-control" name="pos_name" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_pos_name">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_location">Location</span>
+            <input type="text" class="form-control" name="location" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_location">
+        </div>
+
+
+
+        <br>
+        <input class="btn btn-primary gradient-custom-3" type="submit" name="form" value="Submit"/>
+    </form>
+</div>
+
+{% endblock %}

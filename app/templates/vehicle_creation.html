@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Vehicle Information Form</h1>
+    <p>Enter the vehicle information:</p>
+    <br>
+    <form action="/vehicle_detail" method="post">
+        <input type="hidden" id="op" name="op" value="I">
+        <div class="input-group mb-3">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_id">ID</span>
+            <input type="number" min="0" class="form-control" name="id_vehicle" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_id" required>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_number_plate">Number Plate</span>
+            <input type="text" class="form-control" name="number_plate" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_number_plate">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_area">Capacity</span>
+            <input type="number" class="form-control" name="capacity" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_capacity" step="1" min="0">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_harvest_id">Harvest ID</span>
+            <input type="number" class="form-control" name="harvest_id" aria-label="Sizing example input"
+                   aria-describedby="inputGroup_harvest_id" min="0">
+        </div>
+
+
+        <br>
+        <input class="btn btn-primary gradient-custom-3" type="submit" name="form" value="Submit"/>
+    </form>
+</div>
+
+{% endblock %}

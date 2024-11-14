@@ -43,10 +43,6 @@ async def index(request: Request):
     user_logged_in = is_logged_in(request)
     return templates.TemplateResponse("index.html", {"request": request, "user_logged_in": user_logged_in})
 
-@app.get("/login", response_class=HTMLResponse)
-async def login(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
-
 @app.get("/register", response_class=HTMLResponse)
 async def register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
@@ -81,6 +77,10 @@ async def register_user(
     except IntegrityError:
         db.rollback()
         return templates.TemplateResponse("register.html", {"request": request, "error": "The email is already registered. Please use another one."})
+
+@app.get("/login", response_class=HTMLResponse)
+async def login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
 
 @app.post("/login", response_class=HTMLResponse)
 async def login_user(

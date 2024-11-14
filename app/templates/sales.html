@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+        <!-- Sección Puntos de Venta -->
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="sales-form">
+                        <h2 class="text-center mb-4">Registro de Ventas</h2>
+                        <form id="salesForm" action="/registrar-venta" method="POST">
+                            <div class="form-group">
+                                <label for="puntoVenta">Punto de Venta</label>
+                                <select class="form-control" id="puntoVenta" name="id_punto_venta" required>
+                                    <option value="">Seleccione un punto de venta</option>
+                                    <option value="1">Punto de Venta 1</option>
+                                    <option value="2">Punto de Venta 2</option>
+                                    <!-- Más opciones se pueden agregar dinámicamente -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fecha">Fecha</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cantidad">Cantidad Vendida</label>
+                                <input type="number" class="form-control" id="cantidad" name="cantidad_vendida"
+                                       step="0.01" min="0" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="precio">Precio</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="number" class="form-control" id="precio" name="precio"
+                                           step="0.01" min="0" required>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary px-5">Registrar Venta</button>
+                            </div>
+                        </form>
+                    </div>
+
+            <div class="card custom-card">
+                <div class="card-header">
+                    <h4>Puntos de Venta Registrados</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaPuntosVenta">
+                            <!-- Los datos se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarPuntosVenta();
+            cargarVentas();
+
+            document.getElementById('ventaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                registrarVenta();
+            });
+        });
+
+        async function cargarPuntosVenta() {
+            try {
+                const response = await fetch('php/obtener_puntos_venta.php');
+                const puntos = await response.json();
+                const select = document.getElementById('puntoVenta');
+
+                puntos.forEach(punto => {
+                    const option = document.createElement('option');
+                    option.value = punto.ID_Punto_Venta;
+                    option.textContent = punto.Nombre;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                mostrarMensaje('Error al cargar puntos de venta', false);
+            }
+        }
+
+        async function cargarVentas() {
+            try {
+                const response = await fetch('php/obtener_ventas.php');
+                const ventas = await response.json();
+                actualizarTablaVentas(ventas);
+            } catch (error) {
+                mostrarMensaje('Error al cargar ventas', false);
+            }
+        }
+
+        async function registrarVenta() {
+            const formData = new FormData(document.getElementById('ventaForm'));
+
+            try {
+                const response = await fetch('php/registrar_venta.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    mostrarMensaje('Venta registrada exitosamente', true);
+                    document.getElementById('ventaForm').reset();
+                    cargarVentas();
+                } else {
+                    mostrarMensaje(result.message || 'Error al registrar la venta', false);
+                }
+            } catch (error) {
+                mostrarMensaje('Error al registrar la venta', false);
+            }
+        }
+
+        function actualizarTablaVentas(ventas) {
+            const tbody = document.querySelector('#ventasTable tbody');
+            tbody.innerHTML = '';
+
+            ventas.forEach(venta => {
+                const row = document.createElement('tr');
+                const total = venta.Cantidad_vendida * venta.Precio;
+
+                row.innerHTML = `
+                    <td>${venta.ID_Venta}</td>
+                    <td>${venta.Nombre_Punto_Venta}</td>
+                    <td>${venta.Fecha}</td>
+                    <td>${venta.Cantidad_vendida}</td>
+                    <td>$${venta.Precio}</td>
+                    <td>$${total.toFixed(2)}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        function mostrarMensaje(mensaje, esExito) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = mensaje;
+            messageDiv.className = `message ${esExito ? 'success' : 'error'}`;
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        }
+        // Modifica las URLs en el script para que apunten a la carpeta php
+async function cargarPuntosVenta() {
+    try {
+        const response = await fetch('php/obtener_puntos_venta.php');
+        const data = await response.json();
+        actualizarTablaPuntosVenta(data);
+        actualizarSelectPuntosVenta(data);
+    } catch (error) {
+        console.error('Error al cargar puntos de venta:', error);
+    }
+}
+    </script>
+
+
+{% endblock %}
