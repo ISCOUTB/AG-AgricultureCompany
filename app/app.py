@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Form, Depends, Response, HTTPException
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.concurrency import run_in_threadpool
@@ -284,7 +284,7 @@ async def silocreation(request: Request, db: Session= Depends(get_db)):
         return RedirectResponse(url="/login")
     user_silos=db.query(Silo).filter(Silo.user_id==user_id).all()
     silos_data = [
-        (silo.ID_Silo, silo.Capacidad)
+        (silo.ID_Silo, silo.Capacidad, silo.Contenido)
         for silo in user_silos
     ]
 
@@ -301,7 +301,7 @@ async def register_silo(
     nombre: str = Form(...),
     capacidad: float = Form(...),
     contenido: float = Form(...),
-    id_cosecha: int = Form(...),
+    id_cosecha: int = 11,
     db: Session = Depends(get_db)
 ):
     user_id = get_current_user_id(request)
@@ -313,7 +313,7 @@ async def register_silo(
             Nombre=nombre,
             Capacidad=capacidad,
             Contenido=contenido,
-            ID_Silo=id_cosecha,
+            ID_Cosecha=id_cosecha,
             user_id=user_id
         )
         db.add(new_silo)
@@ -332,7 +332,6 @@ async def update_silo(request: Request, id_silo: int, db: Session = Depends(get_
     return templates.TemplateResponse("silo_update.html", {"request": request, "id_silo": id_silo, "silo": silo})
 
 # Endpoints para cosechas (harvests)
-
 
 @app.post("/harvest_detail/{id_crop}", response_class=HTMLResponse)
 async def register_harvest(
