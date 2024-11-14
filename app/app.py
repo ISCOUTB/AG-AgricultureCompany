@@ -667,6 +667,14 @@ async def submit_success(request: Request):
     user_logged_in = is_logged_in(request)
     return templates.TemplateResponse("submit_success.html", {"request": request, "user_logged_in": user_logged_in})
 
+@app.get("/contact", response_class=HTMLResponse)
+async def contact(request: Request):
+    return templates.TemplateResponse("contact_us.html", {"request": request})
+
+@app.get("/about_us", response_class=HTMLResponse)
+async def about_us(request: Request):
+    return templates.TemplateResponse("about_us.html", {"request": request})
+
 
 # Montar archivos estaticos
 app.mount("/styles", StaticFiles(directory="styles"), name="styles2")
