@@ -18,6 +18,12 @@ app = FastAPI()
 # Path to the templates folder
 templates = Jinja2Templates(directory="templates")
 
+#Optimization
+cultivation="cultivation.html"
+cultivation2="/cultivation"
+silo="silo.html"
+harvest_update="harvest_update.html"
+
 # Función para verificar si el usuario está autenticado
 def get_current_user_id(request: Request):
     return request.cookies.get("user_id")
@@ -173,7 +179,7 @@ async def delete_crop(request: Request, id_crop: int, db: Session = Depends(get_
     # Obtener el cultivo específico del usuario autenticado
     crop = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop:
-        return templates.TemplateResponse("cultivation.html",
+        return templates.TemplateResponse(cultivation,
                                           {"request": request, "error": "Crop not found or unauthorized access."})
 
 
@@ -189,10 +195,10 @@ async def delete_crop(request: Request, id_crop: int, db: Session = Depends(get_
         db.commit()
 
         # Redirigir al usuario a la página de cultivos
-        return RedirectResponse(url="/cultivation", status_code=302)
+        return RedirectResponse(url=cultivation2, status_code=302)
     except Exception as e:
         db.rollback()
-        return templates.TemplateResponse("cultivation.html",
+        return templates.TemplateResponse(cultivation,
                                           {"request": request, "error": f"Failed to delete crop. Error: {str(e)}"})
 @app.get("/crop_update/{id_crop}", response_class=HTMLResponse)
 async def get_crop_update(request: Request, id_crop: int, db: Session = Depends(get_db)):
@@ -204,7 +210,7 @@ async def get_crop_update(request: Request, id_crop: int, db: Session = Depends(
     crop1 = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop1:
         print("Cultivo no encontrado o el usuario no tiene permiso.")
-        return RedirectResponse(url="/cultivation")
+        return RedirectResponse(url=cultivation2)
 
     print("Cultivo encontrado:", crop1)  # Para confirmar que los datos existen
 
@@ -234,7 +240,7 @@ async def post_crop_update(
     # Verificar que el cultivo existe y pertenece al usuario
     crop1 = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop1:
-        return templates.TemplateResponse("cultivation.html", {"request": request, "error": "Cultivo no encontrado o acceso no autorizado"})
+        return templates.TemplateResponse(cultivation, {"request": request, "error": "Cultivo no encontrado o acceso no autorizado"})
 
     # Actualizar el cultivo con los nuevos datos
     crop1.Tipo = crop_type
@@ -246,7 +252,7 @@ async def post_crop_update(
     try:
         db.commit()
         db.refresh(crop1)
-        return templates.TemplateResponse("cultivation.html", {"request": request, "message": "Crop updated succesfully!", "crop": crop1})
+        return templates.TemplateResponse(cultivation, {"request": request, "message": "Crop updated succesfully!", "crop": crop1})
     except Exception as e:
         db.rollback()
         return templates.TemplateResponse("crop_update.html", {"request": request, "error": f"Cannot update crop. Error: {str(e)}", "crop": crop1})
@@ -263,7 +269,7 @@ async def cultivation(request: Request, db: Session = Depends(get_db)):
         for crop in user_crops
     ]
 
-    return templates.TemplateResponse("cultivation.html", {
+    return templates.TemplateResponse(cultivation, {
         "request": request,
         "user_logged_in": True,
         "value": crops_data
@@ -275,7 +281,7 @@ async def cultivation(request: Request, db: Session = Depends(get_db)):
 @app.get("/silo", response_class=HTMLResponse)
 async def silo(request: Request):
     user_logged_in = is_logged_in(request)
-    return templates.TemplateResponse("silo.html", {"request": request, "user_logged_in": user_logged_in})
+    return templates.TemplateResponse(silo, {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/silocreation", response_class=HTMLResponse)
 async def silocreation(request: Request, db: Session= Depends(get_db)):
@@ -319,10 +325,10 @@ async def register_silo(
         db.add(new_silo)
         db.commit()
         db.refresh(new_silo)
-        return templates.TemplateResponse("silo.html", {"request": request, "message": "Silo registered successfully!"})
+        return templates.TemplateResponse(silo, {"request": request, "message": "Silo registered successfully!"})
     except Exception as e:
         db.rollback()
-        return templates.TemplateResponse("silo.html", {"request": request, "error": f"Failed to register silo. Error: {str(e)}"})
+        return templates.TemplateResponse(silo, {"request": request, "error": f"Failed to register silo. Error: {str(e)}"})
 
 @app.get("/silo_update/{id_silo}", response_class=HTMLResponse)
 async def update_silo(request: Request, id_silo: int, db: Session = Depends(get_db)):
@@ -424,7 +430,7 @@ async def update_harvest(
 
     db_harvest = db.query(Cosecha).filter(Cosecha.ID_Cosecha == id_harvest, Cosecha.user_id == user_id).first()
     if not db_harvest:
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "error": "Harvest not found or unauthorized access."})
+        return templates.TemplateResponse(harvest_update, {"request": request, "error": "Harvest not found or unauthorized access."})
 
     db_harvest.Tipo = harvest_type
     db_harvest.Fecha_cosecha = harvest_date
@@ -433,10 +439,10 @@ async def update_harvest(
     try:
         db.commit()
         db.refresh(db_harvest)
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "message": "Harvest updated successfully!"})
+        return templates.TemplateResponse(harvest_update, {"request": request, "message": "Harvest updated successfully!"})
     except Exception as e:
         db.rollback()
-        return templates.TemplateResponse("harvest_update.html", {"request": request, "error": f"Failed to update harvest. Error: {str(e)}"})
+        return templates.TemplateResponse(harvest_update, {"request": request, "error": f"Failed to update harvest. Error: {str(e)}"})
 
 @app.get("/harvest/{id_crop}", response_class=HTMLResponse)
 async def harvest_form(request: Request, id_crop: int, db: Session = Depends(get_db)):
@@ -447,7 +453,7 @@ async def harvest_form(request: Request, id_crop: int, db: Session = Depends(get
     # Obtener el cultivo y verificar que pertenece al usuario actual
     crop = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop:
-        return RedirectResponse(url="/cultivation")
+        return RedirectResponse(url=cultivation2)
 
     # Cargar el formulario `harvest` con datos prellenados del cultivo
     return templates.TemplateResponse("harvest.html", {
