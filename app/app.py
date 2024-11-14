@@ -514,10 +514,10 @@ async def register_assignment(
             "request": request,
             "error": f"Failed to register assignment. Error: {str(e)}"
         })
-@app.get("/assignment_update", response_class=HTMLResponse)
+@app.get("/assignment_creation", response_class=HTMLResponse)
 async def assignment_update(request: Request):
     user_logged_in = is_logged_in(request)
-    return templates.TemplateResponse("assignment_update.html", {"request": request, "user_logged_in": user_logged_in})
+    return templates.TemplateResponse("assignment_creation.html", {"request": request, "user_logged_in": user_logged_in})
 
 
 #Endpoints vehiculos
