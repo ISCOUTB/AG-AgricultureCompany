@@ -10,6 +10,8 @@ services:
       - 7000:5432
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+      networks:
+      - ag
 
   app:
     build:
@@ -23,8 +25,13 @@ services:
       - 8004:8003
     volumes:
       - ./app:/app
+      networks:
+      - ag
 volumes:
   postgres_data:
 
+networks:
+  ag:
+    external: true
 
 
