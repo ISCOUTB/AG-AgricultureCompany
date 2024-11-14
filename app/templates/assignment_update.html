@@ -1,42 +1,31 @@
 {% extends "base.html" %}
-
 {% block page_content %}
-
 <div class="page-header">
-    <h1>Assignment Information Form</h1>
-    <p>Enter the Uptade of the Assignment information:</p>
-    <br>
+    <h1>Update Assignment Details</h1>
+    <p>Modify the assignment details below:</p>
     <form action="/assignment_detail" method="post">
-        <input type="hidden" id="op" name="op" value="U">
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup_id">ID</span>
-            <input type="number" class="form-control" name="id_assignment" aria-label="Sizing example input" placeholder={{id_assignment}} value={{id_assignment}} readonly>
+        <input type="hidden" name="op" value="U">
+        <div class="form-group mb-4">
+            <label for="inputGroup_id" class="form-label">Assignment ID</label>
+            <input type="number" id="inputGroup_id" class="form-control" name="id_assignment" value="{{ id_assignment }}" readonly>
         </div>
-
-         <div class="input-group mb-3">
-            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_date">Assignment Date</span>
-            <input type="date" class="form-control" name="date" aria-label="Sizing example input">
+        <div class="form-group mb-4">
+            <label for="inputGroup_date" class="form-label">Date of Assignment</label>
+            <input type="date" id="inputGroup_date" class="form-control" name="date">
         </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_area">Quantity</span>
-            <input type="number" class="form-control" name="quantity" aria-label="Sizing example input" step="1" min="0">
+        <div class="form-group mb-4">
+            <label for="inputGroup_quantity" class="form-label">Quantity</label>
+            <input type="number" id="inputGroup_quantity" class="form-control" name="quantity" step="1" min="0">
         </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_vehicle_id">Vehicle ID</span>
-            <input type="number"  min="0" class="form-control" name="vehicle_id" aria-label="Sizing example input">
+        <div class="form-group mb-4">
+            <label for="inputGroup_vehicle_id" class="form-label">Vehicle Identifier</label>
+            <input type="number" id="inputGroup_vehicle_id" class="form-control" name="vehicle_id" min="0">
         </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text text-light gradient-custom-2" id="inputGroup_pos">POS ID</span>
-            <input type="number"  min="0" class="form-control" name="pos_id" aria-label="Sizing example input">
+        <div class="form-group mb-4">
+            <label for="inputGroup_pos_id" class="form-label">POS Identifier</label>
+            <input type="number" id="inputGroup_pos_id" class="form-control" name="pos_id" min="0">
         </div>
-
-
-
-        <br>
-        <input class="btn btn-primary gradient-custom-3" type="submit" name="form" value="Submit"/>
+        <button type="submit" class="btn btn-success gradient-custom-3">Update Assignment</button>
     </form>
 </div>
-
 {% endblock %}
