@@ -17,7 +17,7 @@ app = FastAPI()
 
 # Path to the templates folder
 templates = Jinja2Templates(directory="templates")
-
+cultivation="cultivation.html"
 # Función para verificar si el usuario está autenticado
 def get_current_user_id(request: Request):
     return request.cookies.get("user_id")
@@ -173,7 +173,7 @@ async def delete_crop(request: Request, id_crop: int, db: Session = Depends(get_
     # Obtener el cultivo específico del usuario autenticado
     crop = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop:
-        return templates.TemplateResponse("cultivation.html",
+        return templates.TemplateResponse(cultivation,
                                           {"request": request, "error": "Crop not found or unauthorized access."})
 
 
@@ -192,7 +192,7 @@ async def delete_crop(request: Request, id_crop: int, db: Session = Depends(get_
         return RedirectResponse(url="/cultivation", status_code=302)
     except Exception as e:
         db.rollback()
-        return templates.TemplateResponse("cultivation.html",
+        return templates.TemplateResponse(cultivation,
                                           {"request": request, "error": f"Failed to delete crop. Error: {str(e)}"})
 @app.get("/crop_update/{id_crop}", response_class=HTMLResponse)
 async def get_crop_update(request: Request, id_crop: int, db: Session = Depends(get_db)):
@@ -234,7 +234,7 @@ async def post_crop_update(
     # Verificar que el cultivo existe y pertenece al usuario
     crop1 = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop1:
-        return templates.TemplateResponse("cultivation.html", {"request": request, "error": "Cultivo no encontrado o acceso no autorizado"})
+        return templates.TemplateResponse(cultivation, {"request": request, "error": "Cultivo no encontrado o acceso no autorizado"})
 
     # Actualizar el cultivo con los nuevos datos
     crop1.Tipo = crop_type
@@ -246,7 +246,7 @@ async def post_crop_update(
     try:
         db.commit()
         db.refresh(crop1)
-        return templates.TemplateResponse("cultivation.html", {"request": request, "message": "Crop updated succesfully!", "crop": crop1})
+        return templates.TemplateResponse(cultivation, {"request": request, "message": "Crop updated succesfully!", "crop": crop1})
     except Exception as e:
         db.rollback()
         return templates.TemplateResponse("crop_update.html", {"request": request, "error": f"Cannot update crop. Error: {str(e)}", "crop": crop1})
@@ -263,7 +263,7 @@ async def cultivation(request: Request, db: Session = Depends(get_db)):
         for crop in user_crops
     ]
 
-    return templates.TemplateResponse("cultivation.html", {
+    return templates.TemplateResponse(cultivation, {
         "request": request,
         "user_logged_in": True,
         "value": crops_data
