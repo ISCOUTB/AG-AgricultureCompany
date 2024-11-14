@@ -17,7 +17,12 @@ app = FastAPI()
 
 # Path to the templates folder
 templates = Jinja2Templates(directory="templates")
+
+#Optimization
 cultivation="cultivation.html"
+cultivation2="/cultivation"
+silo="silo.html"
+
 # Función para verificar si el usuario está autenticado
 def get_current_user_id(request: Request):
     return request.cookies.get("user_id")
@@ -189,7 +194,7 @@ async def delete_crop(request: Request, id_crop: int, db: Session = Depends(get_
         db.commit()
 
         # Redirigir al usuario a la página de cultivos
-        return RedirectResponse(url="/cultivation", status_code=302)
+        return RedirectResponse(url=cultivation2, status_code=302)
     except Exception as e:
         db.rollback()
         return templates.TemplateResponse(cultivation,
@@ -204,7 +209,7 @@ async def get_crop_update(request: Request, id_crop: int, db: Session = Depends(
     crop1 = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop1:
         print("Cultivo no encontrado o el usuario no tiene permiso.")
-        return RedirectResponse(url="/cultivation")
+        return RedirectResponse(url=cultivation2)
 
     print("Cultivo encontrado:", crop1)  # Para confirmar que los datos existen
 
@@ -275,7 +280,7 @@ async def cultivation(request: Request, db: Session = Depends(get_db)):
 @app.get("/silo", response_class=HTMLResponse)
 async def silo(request: Request):
     user_logged_in = is_logged_in(request)
-    return templates.TemplateResponse("silo.html", {"request": request, "user_logged_in": user_logged_in})
+    return templates.TemplateResponse(silo, {"request": request, "user_logged_in": user_logged_in})
 
 @app.get("/silocreation", response_class=HTMLResponse)
 async def silocreation(request: Request, db: Session= Depends(get_db)):
@@ -319,10 +324,10 @@ async def register_silo(
         db.add(new_silo)
         db.commit()
         db.refresh(new_silo)
-        return templates.TemplateResponse("silo.html", {"request": request, "message": "Silo registered successfully!"})
+        return templates.TemplateResponse(silo, {"request": request, "message": "Silo registered successfully!"})
     except Exception as e:
         db.rollback()
-        return templates.TemplateResponse("silo.html", {"request": request, "error": f"Failed to register silo. Error: {str(e)}"})
+        return templates.TemplateResponse(silo, {"request": request, "error": f"Failed to register silo. Error: {str(e)}"})
 
 @app.get("/silo_update/{id_silo}", response_class=HTMLResponse)
 async def update_silo(request: Request, id_silo: int, db: Session = Depends(get_db)):
@@ -447,7 +452,7 @@ async def harvest_form(request: Request, id_crop: int, db: Session = Depends(get
     # Obtener el cultivo y verificar que pertenece al usuario actual
     crop = db.query(Cultivo).filter(Cultivo.ID_Cultivo == id_crop, Cultivo.user_id == user_id).first()
     if not crop:
-        return RedirectResponse(url="/cultivation")
+        return RedirectResponse(url=cultivation2)
 
     # Cargar el formulario `harvest` con datos prellenados del cultivo
     return templates.TemplateResponse("harvest.html", {
