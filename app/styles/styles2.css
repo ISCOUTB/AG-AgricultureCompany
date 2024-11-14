@@ -15,11 +15,6 @@ background: linear-gradient(to right, #3b8357, #49a466, #75bb48, #9ec94a ) !impo
     border-color: #9ae594;
 }
 
-/*@media (min-width: 768px) {
-.gradient-form {
-height: 100vh !important;
-}
-}*/
 @media (min-width: 769px) {
 .gradient-custom-2 {
 border-top-right-radius: .3rem;
@@ -93,10 +88,6 @@ height: 100vh !important;
 
 
 .dancing-script-Tittle {
-  /*font-family: "Dancing Script", cursive;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;*/
     font-family: "Sue Ellen Francisco", cursive;
   font-weight: 400;
   font-style: normal;
@@ -111,7 +102,6 @@ height: 100vh !important;
 
 body {
     background-image: url('https://images.unsplash.com/photo-1711397651462-3b2a22f5cfc8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtcG8lMjBkZSUyMGFncmljdWx0dXJhfGVufDB8fDB8fHww');
-    /*background-image: url('../images/back2.png');*/
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -149,9 +139,6 @@ h2, h3{
     justify-content: space-around;
     padding-top: 10px;
 }
-/*.team:hover {
-    transform: scale(1.05);
-}*/
 
 .member {
     background-color: #fff;
@@ -249,50 +236,6 @@ h2, h3{
 .button:active:after {
   background: teal;
 }
-
-
-/*.navbar-nav li a {
-    display: block;
-}
-
-.navbar-nav > li {
-    position: relative;
-}
-
-.navbar-nav li ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 140px;
-    background-color: #9ec94a;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    border: none;
-}
-
-.navbar-nav li:hover > ul {
-    display: block;
-}
-
-.dropdown-menu li a {
-    color: #fff;
-    padding: 8px 12px;
-    display: block;
-    text-decoration: none;
-}
-
-.dropdown-menu li a:hover {
-    background-color: #7ca93c;
-}*/
-
-/*.with-user {
-    background-color: #9ec94a;
-    padding: 8px;
-    text-align: left;
-    white-space: nowrap;
-}*/
 
 .dropdown-menu{
     background-color: #75bb48;
