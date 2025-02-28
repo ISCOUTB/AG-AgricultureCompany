@@ -65,7 +65,7 @@ Notificaciones sobre tareas pendientes o eventos importantes, como fechas de cos
 Paneles de control interactivos con gráficos y reportes que ayudan a la toma de decisiones.
 
 - Soporte multiusuario:
-Permite la colaboración entre múltiples usuarios con distintos roles (administrador, agricultor, distribuidor, etc.).
+Permite la colaboración entre múltiples usuarios con distintos roles (administrador, agricultor, entre otros que se implementen posteriormente).
 
 - Escalabilidad y modularidad:
 Arquitectura preparada para crecer con la empresa, integrando nuevos módulos según sea necesario.
